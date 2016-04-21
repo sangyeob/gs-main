@@ -162,7 +162,7 @@ textarea:focus, input:focus{
 
 
 @import url(http://fonts.googleapis.com/css?family=Noto+Sans);
-html, body { width: 100vw; height: 100vh; font-family: 'Noto Sans', sans-serif; }
+html, body { width: 100vw; height: 100vh; font-family: 'Noto Sans', sans-serif; -webkit-text-size-adjust: none; }
 div.password { width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; background-color: #ff0064; z-index: 100; }
 body.out div.password { background-color: #00aacd; }
 div.password div.caption { margin-top: calc(50vh - 65vw); font-size: 4vw; height: 4vw; line-height: 4vw; text-align: center; color: white; width: 100%;  }
