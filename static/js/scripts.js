@@ -94,7 +94,7 @@ function toHHMMSS(sec) {
     if (hours   < 10) {hours   = "0"+hours;}
     if (minutes < 10) {minutes = "0"+minutes;}
     if (seconds < 10) {seconds = "0"+seconds;}
-    var time    = hours+':'+minutes+':'+seconds+':'+ milisec;
+    var time    = hours+':'+minutes+':'+seconds+'.'+ milisec;
     return time;
 }
 (function ($) {
@@ -148,7 +148,7 @@ function updateInputpass() {
 	if($inputpass.length >= 4) {
 		$('div.keypad').removeClass('free').addClass('lock');
 		setTimeout(function() {
-			if($inputpass == $('div.dots').attr('data-password')) {
+			if(parseInt($inputpass) == $pw) {
 				$('div.password').animate({'top': '-70vh', 'opacity': '0'}, 500, function() {
 					$(this).css({
 						'top': '0',
@@ -169,36 +169,78 @@ function updateInputpass() {
 	}
 }
 $(document).ready(function() {
+	$posStat = 'inrange';
+	$posLat = 37.4822241;
+	$posLon = 126.8942008;
 	if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
     } else {
         alert('GPS를 켜주세요!');
         location.reload();
     }
+	setInterval(function() {
+		if (navigator.geolocation) {
+	        navigator.geolocation.getCurrentPosition(showPosition, showError);
+	    } else {
+	        alert('GPS를 켜주세요!');
+	        location.reload();
+	    }
+	}, 10000);
+	$ccnt = 0;
     function showPosition(position) {
-    	
     	mtlat = 37.4822241; // 마리오타워위치
     	mtlon = 126.8942008;
 		/*
 		mtlat = 35.4822241; // 마리오타워위치
     	mtlon = 125.8942008;
     	*/
+    	$posLat = position.coords.latitude;
+    	$posLon = position.coords.longitude;
 		var p = 0.017453292519943295;    // Math.PI / 180
 		var c = Math.cos;
 		var a = 0.5 - c((mtlat - position.coords.latitude) * p)/2 + 
 		        c(position.coords.latitude * p) * c(mtlat * p) * 
 		        (1 - c((mtlon - position.coords.longitude) * p))/2;
 		if(12742 * Math.asin(Math.sqrt(a)) > 1) { // 1km 이상
-			$('.logtime').addClass('disabled');
 			if($('body').hasClass('in')) {
 				updatelog('out');
 			}
-		} 
+			if($('body').hasClass('out')) {
+				$('div.logtime').text('외근');
+			} else {
+				$('div.logtime').text('퇴근');
+			}
+			$posStat = 'outrange';
+		} else {
+			if($('body').hasClass('out')) {
+				$('div.logtime').text('출근');
+			} else {
+				$('div.logtime').text('퇴근');
+			}
+			$posStat = 'inrange';
+		}
+		$('div.logtime').removeClass('disabled');
 	}
 	function showError(error) {
 		alert('GPS를 켜주세요!');
         location.reload();
 	}
+	function inputPop(message, callback) {
+		$('div.inputpop div.message').text(message);
+		$('div.inputpop input').val('');
+		$('div.inputpop').removeClass('disp-none');
+		$('div.inputpop div.okay').off('touchstart').on('touchstart', function() {
+			if($('div.inputpop input').val().trim() == '') {
+				$('div.inputpop div.message, div.inputpop input').shake();
+			} else { 
+				$('div.inputpop').addClass('disp-none');
+				callback($('div.inputpop input').val());
+			}
+		});
+	}
+	$('div.inputpop div.cancel').on('touchstart', function() {
+		$('div.inputpop').addClass('disp-none');
+	});
 	function updatelog(status) {
 		$('.logtime').addClass('tempdisabled');
 		$.ajax({
@@ -207,7 +249,11 @@ $(document).ready(function() {
 			method: 'POST',
 			data: JSON.stringify({
 				time: formatDate(new Date(), "yyyy-MM-dd HH:mm:ss.fff000"),
-				status: status
+				status: status,
+				lat: $posLat,
+				lon: $posLon,
+				range: $posStat,
+				comment: $comment
 			}),
 			success: function(data, status, jqxhr) {
 				data = JSON.parse(data);
@@ -216,10 +262,18 @@ $(document).ready(function() {
 					if($('body').hasClass('out')) {
 						$('body').removeClass('out').addClass('in');
 						$('.logtime').text('퇴근');
-						notify($name + '님 오늘도 열심히 일해요!');
+						if($posStat == 'inrange') {
+							notify($name + '님 오늘도 열심히 일해요!');
+						} else {
+							notify($name + '님 밖에서도 열심히 일해요!');
+						}
 					} else {
 						$('body').removeClass('in').addClass('out');
-						$('.logtime').text('출근');
+						if($posStat == 'outrange') {
+							$('.logtime').text('외근');
+						} else {
+							$('.logtime').text('출근');
+						}
 						notify('수고하셨습니다. 안녕히가세요!');
 					}
 					$totalsec = data.totalsec;
@@ -230,13 +284,9 @@ $(document).ready(function() {
 				else {
 					location.reload();
 				}
+				loggedIn = Date.now();
 			}
 		});
-	}
-	if($initstatus == 'out') {
-		$('div.logtime').text('출근');
-	} else {
-		$('div.logtime').text('퇴근');
 	}
 	$('div.keypad .btn').on('touchstart', function() {
 		if($('div.keypad').hasClass('lock')) return false;
@@ -247,16 +297,68 @@ $(document).ready(function() {
 		}
 		updateInputpass();
 	});
+	$comment = '';
 	$('div.logtime').on('touchstart', function() {
 		if($(this).hasClass('tempdisabled')) return false;
 		if($(this).hasClass('disabled')) {
-			notify('회사에서 너무 멀리 있어요 ㅠㅠ');
+			notify('GPS가 위치를 잡을 떄까지 잠시만 기다려주세요.')
 			return false;
 		}
-		if($('body').hasClass('in'))
+		$comment = '';
+		if($('body').hasClass('in')) {
 			updatelog('out');
-		else
-			updatelog('in');
+		}
+		else {
+			if($posStat == 'outrange') {
+				inputPop('외근 사유를 적어주세요 :)', function(data) {
+					$comment = data;
+					updatelog('in');
+				});
+			} else updatelog('in');
+		}
+	});
+	function inflateStatField(rank, name, time, salary, account) {
+		$row = $('<div class="row clearfix"></div>');
+		$row.append($('<div class="rank"></div>').text(rank));
+		$row.append($('<div class="name"></div>').text(name));
+		$row.append($('<div class="time"></div>').text(time));
+		$row.append($('<div class="salary"></div>').text(salary));
+		$('div.stat div.dataarea').append($row);
+		if(account != '') {
+			$row = $('<div class="row clearfix"></div>');
+			$row.append($('<div class="account"></div>').text(account));
+			$('div.stat div.dataarea').append($row);
+		}
+	}
+	$('div.btnstat').on('touchstart', function() {
+		$.ajax({
+			url: '/intranet/getstat/',
+			contentType: 'application/json;charset=UTF-8',
+			method: 'POST',
+			data: {
+				requestfor: 'monthstatus'
+			},
+			success: function(data, status, jqxhr) {
+				data = JSON.parse(data);
+				console.log(data);
+				$('div.stat').removeClass('disp-none');
+				$('div.stat div.dataarea').html('');
+				inflateStatField('순위', '이름', '일한 시간', '월급', '');
+				for(i = 0; i < data.length; i ++) {
+					inflateStatField((i+1)+'등', data[i].name, toHHMMSS(data[i].totalsecmonth), '₩ ' + Math.floor(data[i].totalsecmonth / 100000 / 60 / 60 * $hwage * 10) * 10, data[i].account);
+				}
+				$('div.stat div.dataarea').css('top', 'calc(50vh ' + (11 + 7 * data.length) + 'vw)')
+			}
+		})
+	});
+	$('div.stat div.background').on('touchstart', function() {
+		$('div.stat').addClass('disp-none');
+	});
+	$('div.btnreceipt').on('touchstart', function() {
+		notify('리포트 기능 준비중입니다 ㅠㅠ');
+	});
+	$('div.btncoin').on('touchstart', function() {
+		notify('비용 처리 기능 개발중입니다 ㅠㅠ');
 	});
 	loggedIn = Date.now();
 	function updateTime(totalsec) {
@@ -269,7 +371,7 @@ $(document).ready(function() {
 	setInterval(function() {
 		if($lastupdate != new Date().getDate() || Date.now() - loggedIn > 60 * 5 * 1000) location.reload();
 		if($('body').hasClass('in'))
-			updateTime($totalsec + (Date.now() - $last));
+			updateTime($totalsec + (Date.now() - loggedIn));
 		$lastupdate = new Date().getDate();
 	}, 47);
 });

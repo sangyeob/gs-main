@@ -163,6 +163,15 @@ textarea:focus, input:focus{
 
 @import url(http://fonts.googleapis.com/css?family=Noto+Sans);
 html, body { width: 100vw; height: 100vh; font-family: 'Noto Sans', sans-serif; -webkit-text-size-adjust: none; }
+div.btnstat { width: 10vw; height: 10vw; background-color: #ff0064; transition: background-color 1s; position: absolute; top: 25vw; right: 5vw; border-radius: 2vw; }
+body.out div.btnstat { background-color: #00aacd; }
+div.btnstat img { width: 80%; height: 80%; margin: 10%; }
+div.btncoin { width: 10vw; height: 10vw; background-color: #ff0064; transition: background-color 1s; position: absolute; top: 40vw; right: 5vw; border-radius: 2vw; opacity: .5; }
+body.out div.btncoin { background-color: #00aacd; }
+div.btncoin img { width: 80%; height: 80%; margin: 10%; }
+div.btnreceipt { width: 10vw; height: 10vw; background-color: #ff0064; transition: background-color 1s; position: absolute; top: 55vw; right: 5vw; border-radius: 2vw; opacity: .5; }
+body.out div.btnreceipt { background-color: #00aacd; }
+div.btnreceipt img { width: 80%; height: 80%; margin: 10%; }
 div.password { width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; background-color: #ff0064; z-index: 100; }
 body.out div.password { background-color: #00aacd; }
 div.password div.caption { margin-top: calc(50vh - 65vw); font-size: 4vw; height: 4vw; line-height: 4vw; text-align: center; color: white; width: 100%;  }
@@ -172,18 +181,17 @@ div.password div.dots div.dot.filled { background-color: white; }
 div.password div.dots div.dot4 { margin-right: 0; }
 div.password div.keypad { width: 100%; margin-top: 15vw; }
 div.password div.keypad div.row { margin: 8vw 0 0 calc(15vw - 9px); }
-div.password div.keypad div.btn { width: 18vw; height: 18vw; border-radius: 18vw; font-size: 4vw; color: white; border: 3px solid white; float: left; line-height: 18vw; text-align: center; margin-right: 8vw; transition: background-color .2s, color .2s; }
+div.password div.keypad div.btn { width: 18vw; height: 18vw; border-radius: 18vw; font-size: 5vw; color: white; border: 3px solid white; float: left; line-height: 18vw; text-align: center; margin-right: 8vw; transition: background-color .2s, color .2s; }
 div.password div.keypad div.row4 div.btn-num { margin-left: calc(26vw + 6px); }
 div.password div.keypad div.row4 div.btn-cancel { border: 0px none; padding-left: 3px; font-size: 4vw; }
-div.password div.keypad.free div.btn-num:active { background-color: white; color: #ff0064; transition: background-color 0s, color 0s; 
-}
+div.password div.keypad.free div.btn-num:active { background-color: white; color: #ff0064; transition: background-color 0s, color 0s; }
 body.out div.password div.keypad.free div.btn-num:active { color: #00aacd; }
 div.password div.keypad.lock { opacity: .5; }
 div.logtime { width: 60vw; height: 10vw; line-height: 10vw; border-radius: 10px; text-align: center; background-color: #ff0064; color: white; font-size: 4vw; transition: background-color 1s, opacity .3s; margin-left: 20vw; position: absolute; bottom: 15vw; left: 0; }
 body.out div.logtime { background-color: #00aacd; }
 div.logtime.disabled { opacity: .5; }
 div.logtime.tempdisabled { opacity: .5; }
-div.logo-placeholder { width: 100%; height: 20vw; }
+div.logo-placeholder { width: 100%; height: 25vw; }
 div.logo { width: 38vw; background-color: #ff0064; margin-left: 31vw; text-align: center; transition: background-color 1s; height: 38vw; }
 body.out div.logo { background-color: #00aacd; }
 div.logo img { width: 40vw; height: 40vw; position: relative; top: -1vw; left: -1vw; }
@@ -197,3 +205,31 @@ div.timer { font-size: 8vw; text-align: center; height: 12vw; line-height: 10vw;
 body.out div.timer { border-color: #00aacd; }
 div.moneytoday { font-size: 4vw; text-align: right; height: 5vw; line-height: 5vw; margin-top: 4vw; }
 div.moneymonth { font-size: 4vw; text-align: right; height: 5vw; line-height: 5vw; margin-top: 4vw; }
+div.stat { width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; z-index: 100; }
+div.stat div.background { width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; z-index: 1; background-color: rgba(0, 0, 0, .5); }
+div.stat div.dataarea { width: 70vw; padding: 7vw 10vw; font-size: 3.5vw; position: absolute; z-index: 2; left: 5vw; top: calc(50vh - 46vw); background-color: white; border-radius: 5vw; }
+div.stat div.dataarea div.row { width: 70vw;  height: 7vw; line-height: 7vw; position: relative; color: #ff0064; }
+body.out div.stat div.dataarea div.row { color: #00aacd; }
+div.stat div.dataarea div.row div { float: left; text-align: center; }
+div.stat div.dataarea div.row:first-child { border-bottom: 1vw solid #ff0064; font-weight: bold; }
+body.out div.stat div.dataarea div.row:first-child { border-bottom: 1vw solid #00aacd; }
+div.stat div.dataarea div.row div.rank { width: 15%; }
+div.stat div.dataarea div.row div.name { width: 20%; }
+div.stat div.dataarea div.row div.time { width: 30%; }
+div.stat div.dataarea div.row div.salary { width: 34.9%; text-align: right; }
+div.stat div.dataarea div.row:first-child div.salary { text-align: center; }
+div.stat div.dataarea div.row div.account { width: 100%; border-bottom: 2px dashed #ff0064; text-align: right; }
+body.out div.stat div.dataarea div.row div.account { border-color: #00aacd; }
+div.inputpop { position: fixed; width: 100vw; height: 100vh; top: 0; left: 0; z-index: 100; }
+div.inputpop div.background { position: absolute; width: 100vw; height: 100vh; top: 0; left: 0; z-index: 1; background-color: rgba(0, 0, 0, .5); }
+div.inputpop div.dataarea { width: 90vw; height: 41.5vw; position: absolute; z-index: 2; left: 5vw; top: calc(50vh - 20vw); background-color: white; border-radius: 5vw; }
+div.inputpop div.dataarea div.message { width: 90vw; height: 15vw; font-size: 4vw; line-height: 15vw; text-align: center; color: #ff0064; }
+body.out div.inputpop div.dataarea div.message { color: #00aacd; }
+div.inputpop div.dataarea input { width: 60vw; margin: 0 10vw 5vw; padding: 0 5vw; height: 10vw; line-height: 10vw; font-size: 4vw; border: 0px none; border-bottom: 1vw solid #ff0064; }
+body.out div.inputpop div.dataarea input { border-color: #00aacd; }
+div.inputpop div.dataarea .clearfix { width: 100%; border-top: .5vw solid #ff0064; position: absolute; left: 0; bottom: 0; }
+body.out div.inputpop div.dataarea .clearfix { border-color: #00aacd; }
+div.inputpop div.dataarea .clearfix div { width: 45vw; height: 10vw; line-height: 10vw; font-size: 4vw; text-align: center; color: #ff0064; }
+body.out div.inputpop div.dataarea .clearfix div { color: #00aacd; }
+div.inputpop div.dataarea .clearfix div.okay { width: 44.5vw; border-left: .5vw solid #ff0064; font-weight: bold; background-color: #ff0064; color: white; border-radius: 0 0 5vw 0; }
+body.out div.inputpop div.dataarea .clearfix div.okay { border-color: #00aacd; background-color: #00aacd; color: white; }
