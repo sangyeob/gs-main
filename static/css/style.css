@@ -163,13 +163,13 @@ textarea:focus, input:focus{
 
 @import url(http://fonts.googleapis.com/css?family=Noto+Sans);
 html, body { width: 100vw; height: 100vh; font-family: 'Noto Sans', sans-serif; -webkit-text-size-adjust: none; }
-div.btnstat { width: 10vw; height: 10vw; background-color: #ff0064; transition: background-color 1s; position: absolute; top: 25vw; right: 5vw; border-radius: 2vw; }
+div.btnstat { width: 10vw; height: 10vw; background-color: #ff0064; transition: background-color 1s; position: absolute; top: 20vw; right: 4vw; border-radius: 2vw; }
 body.out div.btnstat { background-color: #00aacd; }
 div.btnstat img { width: 80%; height: 80%; margin: 10%; }
-div.btncoin { width: 10vw; height: 10vw; background-color: #ff0064; transition: background-color 1s; position: absolute; top: 40vw; right: 5vw; border-radius: 2vw; opacity: .5; }
+div.btncoin { width: 10vw; height: 10vw; background-color: #ff0064; transition: background-color 1s; position: absolute; top: 35vw; right: 4vw; border-radius: 2vw; opacity: .5; }
 body.out div.btncoin { background-color: #00aacd; }
 div.btncoin img { width: 80%; height: 80%; margin: 10%; }
-div.btnreceipt { width: 10vw; height: 10vw; background-color: #ff0064; transition: background-color 1s; position: absolute; top: 55vw; right: 5vw; border-radius: 2vw; opacity: .5; }
+div.btnreceipt { width: 10vw; height: 10vw; background-color: #ff0064; transition: background-color 1s; position: absolute; top: 50vw; right: 4vw; border-radius: 2vw; opacity: .5; }
 body.out div.btnreceipt { background-color: #00aacd; }
 div.btnreceipt img { width: 80%; height: 80%; margin: 10%; }
 div.password { width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; background-color: #ff0064; z-index: 100; }
@@ -191,15 +191,15 @@ div.logtime { width: 60vw; height: 10vw; line-height: 10vw; border-radius: 10px;
 body.out div.logtime { background-color: #00aacd; }
 div.logtime.disabled { opacity: .5; }
 div.logtime.tempdisabled { opacity: .5; }
-div.logo-placeholder { width: 100%; height: 25vw; }
-div.logo { width: 38vw; background-color: #ff0064; margin-left: 31vw; text-align: center; transition: background-color 1s; height: 38vw; }
+div.logo-placeholder { width: 100%; height: 20vw; }
+div.logo { width: 58vw; background-color: #ff0064; margin-left: 21vw; text-align: center; transition: background-color 1s; height: 58vw; }
 body.out div.logo { background-color: #00aacd; }
-div.logo img { width: 40vw; height: 40vw; position: relative; top: -1vw; left: -1vw; }
+div.logo img { width: 60vw; height: 60vw; position: relative; top: -1vw; left: -1vw; }
 div.statusplaceholder { width: 100%; height: 60px; position: absolute; top: 0; left: 0; background-color: #ff0064; z-index: 10; transition: background-color 1s; }
 div.notif { width: 100%; height: 10vw; line-height: 10vw; text-align: center; padding-top: 60px; background-color: #ff0064; color: white; position: fixed; top: -10vw; left: 0; z-index: 3; transition: background-color 1s; font-size: 4vw; }
 body.out div.statusplaceholder { background-color: #00aacd; }
 body.out div.notif { background-color: #00aacd; }
-div.data { margin-top: 10vw; padding: 10vw 5vw; width: 60vw; margin-left: 15vw; border-radius: 10vw; color: #ff0064; transition: color 1s; }
+div.data { padding: 10vw 5vw; width: 60vw; margin-left: 15vw; border-radius: 10vw; color: #ff0064; transition: color 1s; }
 body.out div.data { color: #00aacd; }
 div.timer { font-size: 8vw; text-align: center; height: 12vw; line-height: 10vw; border-bottom: 1vw dotted #ff0064; transition: border-color 1s; }
 body.out div.timer { border-color: #00aacd; }
