@@ -202,9 +202,11 @@ $(document).ready(function() {
 		        c(position.coords.latitude * p) * c(mtlat * p) * 
 		        (1 - c((mtlon - position.coords.longitude) * p))/2;
 		if(12742 * Math.asin(Math.sqrt(a)) > 1) { // 1km 이상
+			/*
 			if($('body').hasClass('in')) {
 				updatelog('out');
 			}
+			*/
 			if($('body').hasClass('out')) {
 				$('div.logtime').text('외근');
 			} else {
@@ -317,11 +319,11 @@ $(document).ready(function() {
 			} else updatelog('in');
 		}
 	});
-	function inflateStatField(rank, name, time, salary, account) {
+	function inflateStatField(rank, name, time, salary, account, last, datatime) {
 		$row = $('<div class="row clearfix"></div>');
 		$row.append($('<div class="rank"></div>').text(rank));
 		$row.append($('<div class="name"></div>').text(name));
-		$row.append($('<div class="time"></div>').text(time));
+		$row.append($('<div class="time"></div>').text(time).attr('data-last', last).attr('data-time', datatime));
 		$row.append($('<div class="salary"></div>').text(salary));
 		$('div.stat div.dataarea').append($row);
 		if(account != '') {
@@ -340,12 +342,18 @@ $(document).ready(function() {
 			},
 			success: function(data, status, jqxhr) {
 				data = JSON.parse(data);
-				console.log(data);
+				laststated = Date.now();
 				$('div.stat').removeClass('disp-none');
 				$('div.stat div.dataarea').html('');
 				inflateStatField('순위', '이름', '일한 시간', '월급', '');
 				for(i = 0; i < data.length; i ++) {
-					inflateStatField((i+1)+'등', data[i].name, toHHMMSS(data[i].totalsecmonth), '₩ ' + Math.floor(data[i].totalsecmonth / 100000 / 60 / 60 * $hwage * 10) * 10, data[i].account);
+					inflateStatField((i+1)+'등', 
+									 data[i].name, 
+									 toHHMMSS(data[i].totalsecmonth), 
+									 '₩ ' + Math.floor(data[i].totalsecmonth / 100000 / 60 / 60 * $hwage * 12) * 10, 
+									 data[i].account,
+									 data[i].last,
+									 data[i].totalsecmonth);
 				}
 				$('div.stat div.dataarea').css('top', 'calc(50vh ' + (11 + 7 * data.length) + 'vw)')
 			}
@@ -361,6 +369,7 @@ $(document).ready(function() {
 		notify('비용 처리 기능 개발중입니다 ㅠㅠ');
 	});
 	loggedIn = Date.now();
+	laststated = Date.now();
 	function updateTime(totalsec) {
 		$('div.timer').text(toHHMMSS(totalsec));
 		$('div.moneytoday .floatR').text('₩ ' + Math.floor(totalsec / 10000 / 60 / 60 * $hwage) * 10);
@@ -372,6 +381,14 @@ $(document).ready(function() {
 		if($lastupdate != new Date().getDate() || Date.now() - loggedIn > 60 * 5 * 1000) location.reload();
 		if($('body').hasClass('in'))
 			updateTime($totalsec + (Date.now() - loggedIn));
+		if(!$('div.stat').hasClass('disp-none')) {
+			$('div.stat div.time').each(function() {
+				if($(this).attr('data-last') == 'in') {
+					$(this).text(toHHMMSS(parseInt($(this).data('time')) + (Date.now() - laststated)));
+					$(this).parent().find('div.salary').text('₩ ' + Math.floor((parseInt($(this).data('time')) + (Date.now() - laststated)) / 100000 / 60 / 60 * $hwage * 12) * 10);
+				}
+			});
+		}
 		$lastupdate = new Date().getDate();
 	}, 47);
 });
