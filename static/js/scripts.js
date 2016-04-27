@@ -169,21 +169,25 @@ function updateInputpass() {
 	}
 }
 $(document).ready(function() {
-	$posStat = 'inrange';
-	$posLat = 37.4822241;
-	$posLon = 126.8942008;
+	$posStat = 'outrange';
+	$posLat = 0;
+	$posLon = 0;
 	if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
     } else {
+    	/*
         alert('GPS를 켜주세요!');
         location.reload();
+        */
     }
 	setInterval(function() {
 		if (navigator.geolocation) {
 	        navigator.geolocation.getCurrentPosition(showPosition, showError);
 	    } else {
+	    	/*
 	        alert('GPS를 켜주세요!');
 	        location.reload();
+	        */
 	    }
 	}, 10000);
 	$ccnt = 0;
