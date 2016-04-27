@@ -175,19 +175,13 @@ $(document).ready(function() {
 	if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
     } else {
-    	/*
-        alert('GPS를 켜주세요!');
-        location.reload();
-        */
+    	showError('GPS disabled');
     }
 	setInterval(function() {
 		if (navigator.geolocation) {
 	        navigator.geolocation.getCurrentPosition(showPosition, showError);
 	    } else {
-	    	/*
-	        alert('GPS를 켜주세요!');
-	        location.reload();
-	        */
+	    	showError('GPS disabled');
 	    }
 	}, 10000);
 	$ccnt = 0;
@@ -228,9 +222,10 @@ $(document).ready(function() {
 		$('div.logtime').removeClass('disabled');
 	}
 	function showError(error) {
-		notify('GPS사용이 불가능합니다.')
-		//alert('GPS를 켜주세요!');
-        //location.reload();
+		alert('error');
+		notify('GPS사용이 불가능합니다.');
+		$('div.logtime').text('GPS를 켜주세요!');
+		$('div.logtime').addClass('disabled');
 	}
 	function inputPop(message, callback) {
 		$('div.inputpop div.message').text(message);
@@ -308,7 +303,7 @@ $(document).ready(function() {
 	$('div.logtime').on('touchstart', function() {
 		if($(this).hasClass('tempdisabled')) return false;
 		if($(this).hasClass('disabled')) {
-			notify('GPS가 위치를 잡을 떄까지 잠시만 기다려주세요.')
+			notify('GPS를 켜고 잠시만 기다려주세요.')
 			return false;
 		}
 		$comment = '';
