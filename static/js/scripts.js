@@ -222,7 +222,7 @@ $(document).ready(function() {
 		$('div.logtime').removeClass('disabled');
 	}
 	function showError(error) {
-		alert('error');
+		alert(error.code + ' / ' + error.message);
 		notify('GPS사용이 불가능합니다.');
 		$('div.logtime').text('GPS를 켜주세요!');
 		$('div.logtime').addClass('disabled');
