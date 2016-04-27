@@ -228,8 +228,9 @@ $(document).ready(function() {
 		$('div.logtime').removeClass('disabled');
 	}
 	function showError(error) {
-		alert('GPS를 켜주세요!');
-        location.reload();
+		notify('GPS사용이 불가능합니다.')
+		//alert('GPS를 켜주세요!');
+        //location.reload();
 	}
 	function inputPop(message, callback) {
 		$('div.inputpop div.message').text(message);
