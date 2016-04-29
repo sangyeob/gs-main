@@ -172,6 +172,7 @@ $(document).ready(function() {
 	$posStat = 'outrange';
 	$posLat = 0;
 	$posLon = 0;
+	/*
 	if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
     } else {
@@ -184,6 +185,7 @@ $(document).ready(function() {
 	    	showError('GPS disabled');
 	    }
 	}, 10000);
+	*/
 	$ccnt = 0;
     function showPosition(position) {
     	mtlat = 37.4822241; // 마리오타워위치
@@ -221,6 +223,7 @@ $(document).ready(function() {
 		}
 		$('div.logtime').removeClass('disabled');
 	}
+	showPosition({ coords: { latiture: 37.4822241, longitude: 126.8942008 }});
 	function showError(error) {
 		alert(error.code + ' / ' + error.message);
 		notify('GPS사용이 불가능합니다.');
