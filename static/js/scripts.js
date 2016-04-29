@@ -170,8 +170,8 @@ function updateInputpass() {
 }
 $(document).ready(function() {
 	$posStat = 'outrange';
-	$posLat = 0;
-	$posLon = 0;
+	$posLat = 37.4822241;
+	$posLon = 126.8942008;
 	/*
 	if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
