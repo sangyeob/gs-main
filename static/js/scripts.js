@@ -223,7 +223,7 @@ $(document).ready(function() {
 		}
 		$('div.logtime').removeClass('disabled');
 	}
-	showPosition({ coords: { latiture: 37.4822241, longitude: 126.8942008 }});
+	showPosition({ coords: { latitude: 37.4822241, longitude: 126.8942008 }});
 	function showError(error) {
 		alert(error.code + ' / ' + error.message);
 		notify('GPS사용이 불가능합니다.');
