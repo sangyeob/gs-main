@@ -258,7 +258,7 @@ $(document).ready(function() {
 				lat: $posLat,
 				lon: $posLon,
 				range: $posStat,
-				comment: $comment
+				comment: $comment == '' ? 'None' : $comment
 			}),
 			success: function(data, status, jqxhr) {
 				data = JSON.parse(data);
@@ -380,18 +380,24 @@ $(document).ready(function() {
 	}
 	updateTime($totalsec);
 	$lastupdate = new Date().getDate();
+	reloadFlag = false;
 	setInterval(function() {
-		if($lastupdate != new Date().getDate() || Date.now() - loggedIn > 60 * 5 * 1000) location.reload();
-		if($('body').hasClass('in'))
-			updateTime($totalsec + (Date.now() - loggedIn));
-		if(!$('div.stat').hasClass('disp-none')) {
-			$('div.stat div.time').each(function() {
-				if($(this).attr('data-last') == 'in') {
-					$(this).text(toHHMMSS(parseInt($(this).data('time')) + (Date.now() - laststated)));
-					$(this).parent().find('div.salary').text('₩ ' + Math.floor((parseInt($(this).data('time')) + (Date.now() - laststated)) / 100000 / 60 / 60 * $hwage * 12) * 10);
-				}
-			});
+		if(!reloadFlag) {
+			if($lastupdate != new Date().getDate() || Date.now() - loggedIn > 60 * 5 * 1000) {
+				location.reload();
+				reloadFlag = true;
+			}
+			if($('body').hasClass('in'))
+				updateTime($totalsec + (Date.now() - loggedIn));
+			if(!$('div.stat').hasClass('disp-none')) {
+				$('div.stat div.time').each(function() {
+					if($(this).attr('data-last') == 'in') {
+						$(this).text(toHHMMSS(parseInt($(this).data('time')) + (Date.now() - laststated)));
+						$(this).parent().find('div.salary').text('₩ ' + Math.floor((parseInt($(this).data('time')) + (Date.now() - laststated)) / 100000 / 60 / 60 * $hwage * 12) * 10);
+					}
+				});
+			}
+			$lastupdate = new Date().getDate();
 		}
-		$lastupdate = new Date().getDate();
 	}, 47);
 });
