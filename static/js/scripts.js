@@ -335,20 +335,48 @@ $(document).ready(function() {
 			$('div.stat div.dataarea').append($row);
 		}
 	}
-	$('div.btnstat').on('touchstart', function() {
+	function updateStat(year, month) {
+		if($('body').hasClass('updatingStat')) return false;
+		$('body').addClass('updatingStat');
 		$.ajax({
-			url: '/intranet/getstat/',
+			url: '/intranet/getstat/' + year + '/' + month + '/',
 			contentType: 'application/json;charset=UTF-8',
 			method: 'POST',
 			data: {
 				requestfor: 'monthstatus'
 			},
-			success: function(data, status, jqxhr) {
+			success: (function(year, month) { return function(data, status, jqxhr) {
+				var d = new Date();
+				$('body').removeClass('updatingStat');
 				data = JSON.parse(data);
 				laststated = Date.now();
 				$('div.stat').removeClass('disp-none');
 				$('div.stat div.dataarea').html('');
+				$('div.stat div.dataarea').append($('<div class="title clearfix"><div class="leftbtn">&#171;</div><div class="text"></div><div class="rightbtn">&#187;</div></div>'));
+				$('div.stat div.dataarea div.leftbtn').on('touchstart', function() { 
+					if($(this).hasClass('opacity0')) return false;
+					var newm = month - 1;
+					var newy = year;
+					if(newm <= 0) newm = 12, newy -= 1;
+					updateStat(newy, newm); 
+				});
+				$('div.stat div.dataarea div.rightbtn').on('touchstart', function() { 
+					if($(this).hasClass('opacity0')) return false;
+					var newm = month + 1;
+					var newy = year;
+					if(newm > 12) newm = 1, newy += 1;
+					updateStat(newy, newm); 
+				});
+				if(2016 == year && 5 == month) { $('div.stat div.dataarea div.leftbtn').addClass('opacity0'); }
+				if(d.getFullYear() == year && d.getMonth() + 1 == month) { 
+					$('div.stat').addClass('updateTime');
+					$('div.stat div.dataarea div.rightbtn').addClass('opacity0'); 
+				} else {
+					$('div.stat').removeClass('updateTime');
+				}
+				$('div.stat div.text').text(year + '년 ' + month + '월');
 				inflateStatField('순위', '이름', '일한 시간', '월급', '');
+				$('div.stat div.row').addClass('bb');
 				for(i = 0; i < data.length; i ++) {
 					inflateStatField((i+1)+'등', 
 									 data[i].name, 
@@ -358,9 +386,13 @@ $(document).ready(function() {
 									 data[i].last,
 									 data[i].totalsecmonth);
 				}
-				$('div.stat div.dataarea').css('top', 'calc(50vh ' + (11 + 7 * data.length) + 'vw)')
-			}
-		})
+				$('div.stat div.dataarea').css('top', 'calc(50vh ' + (13 + 7 * (data.length + 1)) + 'vw)')
+			}; })(year, month)
+		});
+	}
+	$('div.btnstat').on('touchstart', function() {
+		var d = new Date();
+		updateStat(d.getFullYear(), d.getMonth() + 1);
 	});
 	$('div.stat div.background').on('touchstart', function() {
 		$('div.stat').addClass('disp-none');
@@ -389,7 +421,7 @@ $(document).ready(function() {
 			}
 			if($('body').hasClass('in'))
 				updateTime($totalsec + (Date.now() - loggedIn));
-			if(!$('div.stat').hasClass('disp-none')) {
+			if(!$('div.stat').hasClass('disp-none') && $('div.stat').hasClass('updateTime')) {
 				$('div.stat div.time').each(function() {
 					if($(this).attr('data-last') == 'in') {
 						$(this).text(toHHMMSS(parseInt($(this).data('time')) + (Date.now() - laststated)));

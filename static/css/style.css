@@ -208,16 +208,24 @@ div.moneymonth { font-size: 4vw; text-align: right; height: 5vw; line-height: 5v
 div.stat { width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; z-index: 100; }
 div.stat div.background { width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; z-index: 1; background-color: rgba(0, 0, 0, .5); }
 div.stat div.dataarea { width: 70vw; padding: 7vw 10vw; font-size: 3.5vw; position: absolute; z-index: 2; left: 5vw; top: calc(50vh - 46vw); background-color: white; border-radius: 5vw; }
+div.stat div.dataarea div.title { margin-bottom: 2vw; }
+div.stat div.dataarea div.title div { float: left; height: 7vw; line-height: 7vw; color: #ff0064; font-size: 4vw; }
+body.out div.stat div.dataarea div.title div { color: #00aacd; }
+div.stat div.dataarea div.title div.text     { width: 40vw; text-align: center; }
+div.stat div.dataarea div.title div.leftbtn  { width: 15vw; text-align: left; }
+div.stat div.dataarea div.title div.rightbtn { width: 15vw; text-align: right; }
+body.updatingStat div.stat div.dataarea div.title div.leftbtn { opacity: .5; }
+body.updatingStat div.stat div.dataarea div.title div.rightbtn { opacity: .5; }
 div.stat div.dataarea div.row { width: 70vw;  height: 7vw; line-height: 7vw; position: relative; color: #ff0064; }
 body.out div.stat div.dataarea div.row { color: #00aacd; }
 div.stat div.dataarea div.row div { float: left; text-align: center; }
-div.stat div.dataarea div.row:first-child { border-bottom: 1vw solid #ff0064; font-weight: bold; }
-body.out div.stat div.dataarea div.row:first-child { border-bottom: 1vw solid #00aacd; }
+div.stat div.dataarea div.row.bb { border-bottom: 1vw solid #ff0064; font-weight: bold; }
+body.out div.stat div.dataarea div.row.bb { border-bottom: 1vw solid #00aacd; }
 div.stat div.dataarea div.row div.rank { width: 15%; }
 div.stat div.dataarea div.row div.name { width: 20%; }
 div.stat div.dataarea div.row div.time { width: 30%; }
 div.stat div.dataarea div.row div.salary { width: 34.9%; text-align: right; }
-div.stat div.dataarea div.row:first-child div.salary { text-align: center; }
+div.stat div.dataarea div.row.bb div.salary { text-align: center; }
 div.stat div.dataarea div.row div.account { width: 100%; border-bottom: 2px dashed #ff0064; text-align: right; }
 body.out div.stat div.dataarea div.row div.account { border-color: #00aacd; }
 div.inputpop { position: fixed; width: 100vw; height: 100vh; top: 0; left: 0; z-index: 100; }
