@@ -240,7 +240,7 @@ $(document).ready(function() {
 	}
 	function expensePop(message, callback) {
 		$('div.expensePop div.message').text(message);
-		$('div.expensePop input[type=number]').val(0);
+		$('div.expensePop input[type=number]').val('');
 		$('div.expensePop').removeClass('disp-none');
 		$('div.expensePop input[type=text]').val('').focus();
 		$('div.expensePop div.okay').off('touchstart').on('touchstart', function() {
@@ -276,7 +276,6 @@ $(document).ready(function() {
 			}),
 			success: function(data, status, jqxhr) {
 				data = JSON.parse(data);
-				console.log(data);
 				if(data.result == 'success') {
 					if($('body').hasClass('out')) {
 						$('body').removeClass('out').addClass('in');
@@ -426,7 +425,7 @@ $(document).ready(function() {
 					time: formatDate(new Date(), "yyyy-MM-dd HH:mm:ss.fff000")
 				}),
 				success: function(data, status, jqxhr) { 
-					console.log(data);
+					$expense = parseInt(data);
 				}
 			});
 		});
