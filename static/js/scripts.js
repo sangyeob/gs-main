@@ -172,7 +172,7 @@ $(document).ready(function() {
 	$posStat = 'outrange';
 	$posLat = 37.4822241;
 	$posLon = 126.8942008;
-	/*
+	$comment = '';
 	if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
     } else {
@@ -185,15 +185,12 @@ $(document).ready(function() {
 	    	showError('GPS disabled');
 	    }
 	}, 10000);
-	*/
 	$ccnt = 0;
     function showPosition(position) {
     	mtlat = 37.4822241; // 마리오타워위치
     	mtlon = 126.8942008;
-		/*
-		mtlat = 35.4822241; // 마리오타워위치
-    	mtlon = 125.8942008;
-    	*/
+		//mtlat = 35.4822241; // 외근 테스트용
+    	//mtlon = 125.8942008;
     	$posLat = position.coords.latitude;
     	$posLon = position.coords.longitude;
 		var p = 0.017453292519943295;    // Math.PI / 180
@@ -202,11 +199,9 @@ $(document).ready(function() {
 		        c(position.coords.latitude * p) * c(mtlat * p) * 
 		        (1 - c((mtlon - position.coords.longitude) * p))/2;
 		if(12742 * Math.asin(Math.sqrt(a)) > 1) { // 1km 이상
-			/*
-			if($('body').hasClass('in')) {
-				updatelog('out');
-			}
-			*/
+			//if($('body').hasClass('in')) {
+			//	updatelog('out');
+			//}
 			if($('body').hasClass('out')) {
 				$('div.logtime').text('외근');
 			} else {
@@ -302,7 +297,6 @@ $(document).ready(function() {
 		}
 		updateInputpass();
 	});
-	$comment = '';
 	$('div.logtime').on('touchstart', function() {
 		if($(this).hasClass('tempdisabled')) return false;
 		if($(this).hasClass('disabled')) {
