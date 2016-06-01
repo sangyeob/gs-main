@@ -225,21 +225,40 @@ $(document).ready(function() {
 		$('div.logtime').text('GPS를 켜주세요!');
 		$('div.logtime').addClass('disabled');
 	}
-	function inputPop(message, callback) {
-		$('div.inputpop div.message').text(message);
-		$('div.inputpop input').val('');
-		$('div.inputpop').removeClass('disp-none');
-		$('div.inputpop div.okay').off('touchstart').on('touchstart', function() {
-			if($('div.inputpop input').val().trim() == '') {
-				$('div.inputpop div.message, div.inputpop input').shake();
+	function oigeunPop(message, callback) {
+		$('div.oigeunPop div.message').text(message);
+		$('div.oigeunPop input').val('');
+		$('div.oigeunPop').removeClass('disp-none');
+		$('div.oigeunPop div.okay').off('touchstart').on('touchstart', function() {
+			if($('div.oigeunPop input').val().trim() == '') {
+				$('div.oigeunPop div.message, div.oigeunPop input').shake();
 			} else { 
-				$('div.inputpop').addClass('disp-none');
-				callback($('div.inputpop input').val());
+				$('div.oigeunPop').addClass('disp-none');
+				callback($('div.oigeunPop input').val());
 			}
 		});
 	}
-	$('div.inputpop div.cancel').on('touchstart', function() {
-		$('div.inputpop').addClass('disp-none');
+	function expensePop(message, callback) {
+		$('div.expensePop div.message').text(message);
+		$('div.expensePop input[type=number]').val(0);
+		$('div.expensePop').removeClass('disp-none');
+		$('div.expensePop input[type=text]').val('').focus();
+		$('div.expensePop div.okay').off('touchstart').on('touchstart', function() {
+			if($('div.expensePop input[type=text]').val().trim() == '') {
+				$('div.expensePop input[type=text]').shake();
+			} else if($('div.expensePop input[type=number]').val() == 0) {
+				$('div.expensePop input[type=number]').shake();
+			} else { 
+				$('div.expensePop').addClass('disp-none');
+				callback($('div.expensePop input[type=text]').val(), $('div.expensePop input[type=number]').val());
+			}
+		});
+	}
+	$('div.oigeunPop div.cancel').on('touchstart', function() {
+		$('div.oigeunPop').addClass('disp-none');
+	});
+	$('div.expensePop div.cancel').on('touchstart', function() {
+		$('div.expensePop').addClass('disp-none');
 	});
 	function updatelog(status) {
 		$('.logtime').addClass('tempdisabled');
@@ -309,19 +328,19 @@ $(document).ready(function() {
 		}
 		else {
 			if($posStat == 'outrange') {
-				inputPop('외근 사유를 적어주세요 :)', function(data) {
+				oigeunPop('외근 사유를 적어주세요 :)', function(data) {
 					$comment = data;
 					updatelog('in');
 				});
 			} else updatelog('in');
 		}
 	});
-	function inflateStatField(rank, name, time, salary, account, last, datatime) {
+	function inflateStatField(rank, name, time, salary, account, last, datatime, expense) {
 		$row = $('<div class="row clearfix"></div>');
 		$row.append($('<div class="rank"></div>').text(rank));
 		$row.append($('<div class="name"></div>').text(name));
 		$row.append($('<div class="time"></div>').text(time).attr('data-last', last).attr('data-time', datatime));
-		$row.append($('<div class="salary"></div>').text(salary));
+		$row.append($('<div class="salary"></div>').text(salary).attr('data-expense', expense));
 		$('div.stat div.dataarea').append($row);
 		if(account != '') {
 			$row = $('<div class="row clearfix"></div>');
@@ -369,16 +388,17 @@ $(document).ready(function() {
 					$('div.stat').removeClass('updateTime');
 				}
 				$('div.stat div.text').text(year + '년 ' + month + '월');
-				inflateStatField('순위', '이름', '일한 시간', '월급', '');
+				inflateStatField('순위', '이름', '일한 시간', '월급', '', 0);
 				$('div.stat div.row').addClass('bb');
 				for(i = 0; i < data.length; i ++) {
 					inflateStatField((i+1)+'등', 
 									 data[i].name, 
 									 toHHMMSS(data[i].totalsecmonth), 
-									 '₩ ' + Math.floor(data[i].totalsecmonth / 100000 / 60 / 60 * $hwage * 12) * 10, 
+									 '₩ ' + (data[i].expense + Math.floor(data[i].totalsecmonth / 100000 / 60 / 60 * $hwage * 12) * 10), 
 									 data[i].account,
 									 data[i].last,
-									 data[i].totalsecmonth);
+									 data[i].totalsecmonth,
+									 data[i].expense);
 				}
 				$('div.stat div.dataarea').css('top', 'calc(50vh ' + (13 + 7 * (data.length + 1)) + 'vw)')
 			}; })(year, month)
@@ -395,14 +415,28 @@ $(document).ready(function() {
 		notify('리포트 기능 준비중입니다 ㅠㅠ');
 	});
 	$('div.btncoin').on('touchstart', function() {
-		notify('비용 처리 기능 개발중입니다 ㅠㅠ');
+		expensePop('비목과 금액을 적어주세요!', function(content, amount) {
+			$.ajax({
+				url: '/intranet/logexpense/' + $uid + '/',
+				contentType: 'application/json;charset=UTF-8',
+				method: 'POST',
+				data: JSON.stringify({
+					content: content,
+					amount: amount,
+					time: formatDate(new Date(), "yyyy-MM-dd HH:mm:ss.fff000")
+				}),
+				success: function(data, status, jqxhr) { 
+					console.log(data);
+				}
+			});
+		});
 	});
 	loggedIn = Date.now();
 	laststated = Date.now();
 	function updateTime(totalsec) {
 		$('div.timer').text(toHHMMSS(totalsec));
 		$('div.moneytoday .floatR').text('₩ ' + Math.floor(totalsec / 10000 / 60 / 60 * $hwage) * 10);
-		$('div.moneymonth .floatR').text('₩ ' + Math.floor((totalsec - $totalsec + $totalsecmonth) / 100000 / 60 / 60 * $hwage * 12) * 10);
+		$('div.moneymonth .floatR').text('₩ ' + ($expense + Math.floor((totalsec - $totalsec + $totalsecmonth) / 100000 / 60 / 60 * $hwage * 12) * 10));
 	}
 	updateTime($totalsec);
 	$lastupdate = new Date().getDate();
@@ -418,8 +452,8 @@ $(document).ready(function() {
 			if(!$('div.stat').hasClass('disp-none') && $('div.stat').hasClass('updateTime')) {
 				$('div.stat div.time').each(function() {
 					if($(this).attr('data-last') == 'in') {
-						$(this).text(toHHMMSS(parseInt($(this).data('time')) + (Date.now() - laststated)));
-						$(this).parent().find('div.salary').text('₩ ' + Math.floor((parseInt($(this).data('time')) + (Date.now() - laststated)) / 100000 / 60 / 60 * $hwage * 12) * 10);
+						$(this).text(toHHMMSS(parseInt($(this).attr('data-time')) + (Date.now() - laststated)));
+						$(this).parent().find('div.salary').text('₩ ' + (parseInt($(this).parent().find('div.salary').attr('data-expense')) + Math.floor((parseInt($(this).attr('data-time')) + (Date.now() - laststated)) / 100000 / 60 / 60 * $hwage * 12) * 10));
 					}
 				});
 			}

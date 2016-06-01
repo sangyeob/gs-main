@@ -14,9 +14,9 @@
 		<link rel="shortcut icon" sizes="152x152" href="/static/icons/152.png">
 		<script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="/static/js/fastclick.js"></script>
-		<script>$name = '{{ context.name }}'; $uid = '{{ context.uid }}'; $initstatus = '{{ context.status }}'; $totalsec = {{ context.totalsec }}; $totalsecmonth = {{ context.totalsecmonth }}; $last = new Date({{ context.lastlog }}); $hwage = {{ context.hwage }}; $pw = {{ context.pw }};</script>
-		<script type="text/javascript" src="/static/js/scripts.js?v=11"></script>
-		<link rel="stylesheet" href="/static/css/style.css?v=5" />
+		<script>$name = '{{ context.name }}'; $uid = '{{ context.uid }}'; $initstatus = '{{ context.status }}'; $totalsec = {{ context.totalsec }}; $totalsecmonth = {{ context.totalsecmonth }}; $last = new Date({{ context.lastlog }}); $hwage = {{ context.hwage }}; $pw = {{ context.pw }}; $expense = {{ context.expense }};</script>
+		<script type="text/javascript" src="/static/js/scripts.js?v=12"></script>
+		<link rel="stylesheet" href="/static/css/style.css?v=6" />
 	</head>
 	<body class="{{ context.status }}">
 		<div class="btnstat"><img src="/static/stat.png" /></div>
@@ -24,7 +24,7 @@
 		<div class="btnreceipt"><img src="/static/receipt.png" /></div>
 		<div class="statusplaceholder"></div>
 		<div class="notif"></div>
-		<div class="password no-select">
+		<div class="password no-select disp-none">
 			<div class="caption" data-original-caption="안녕하세요 {{ context.name }}님!">안녕하세요 {{ context.name }}님!</div>
 			<div class="dots">
 				<div class="dot dot1"></div>
@@ -74,7 +74,7 @@
 			<div class="background"></div>
 			<div class="dataarea"></div>
 		</div>
-		<div class="inputpop disp-none">
+		<div class="oigeunPop disp-none">
 			<div class="background"></div>
 			<div class="dataarea">
 				<div class="message">외근 사유를 적어주세요</div>
@@ -85,13 +85,19 @@
 				</div>
 			</div>
 		</div>
-		<div class="expensepop disp-none">
+		<div class="expensePop disp-none">
 			<div class="background"></div>
 			<div class="dataarea">
-				<div class="message">용도와 금액을 적어주세요</div>
-				<input type="text" placeholder="용도" />
-				<input type="number" />
+				<div class="message">비목과 금액을 적어주세요</div>
 				<div class="clearfix">
+					<div class="label floatL">비목</div>
+					<input type="text" />
+				</div>
+				<div class="clearfix">
+					<div class="label floatL">₩</div>
+					<input type="number" />
+				</div>
+				<div class="bottombtn clearfix">
 					<div class="cancel floatL">취소</div>
 					<div class="okay floatR">확인</div>
 				</div>

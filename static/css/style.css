@@ -166,7 +166,7 @@ html, body { width: 100vw; height: 100vh; font-family: 'Noto Sans', sans-serif; 
 div.btnstat { width: 10vw; height: 10vw; background-color: #ff0064; transition: background-color 1s; position: absolute; top: 20vw; right: 4vw; border-radius: 2vw; }
 body.out div.btnstat { background-color: #00aacd; }
 div.btnstat img { width: 80%; height: 80%; margin: 10%; }
-div.btncoin { width: 10vw; height: 10vw; background-color: #ff0064; transition: background-color 1s; position: absolute; top: 35vw; right: 4vw; border-radius: 2vw; opacity: .5; }
+div.btncoin { width: 10vw; height: 10vw; background-color: #ff0064; transition: background-color 1s; position: absolute; top: 35vw; right: 4vw; border-radius: 2vw; }
 body.out div.btncoin { background-color: #00aacd; }
 div.btncoin img { width: 80%; height: 80%; margin: 10%; }
 div.btnreceipt { width: 10vw; height: 10vw; background-color: #ff0064; transition: background-color 1s; position: absolute; top: 50vw; right: 4vw; border-radius: 2vw; opacity: .5; }
@@ -207,13 +207,13 @@ div.moneytoday { font-size: 4vw; text-align: right; height: 5vw; line-height: 5v
 div.moneymonth { font-size: 4vw; text-align: right; height: 5vw; line-height: 5vw; margin-top: 4vw; }
 div.stat { width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; z-index: 100; }
 div.stat div.background { width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; z-index: 1; background-color: rgba(0, 0, 0, .5); }
-div.stat div.dataarea { width: 70vw; padding: 7vw 10vw; font-size: 3.5vw; position: absolute; z-index: 2; left: 5vw; top: calc(50vh - 46vw); background-color: white; border-radius: 5vw; }
+div.stat div.dataarea { width: 70vw; padding: 7vw 10vw 9vw; font-size: 3.5vw; position: absolute; z-index: 2; left: 5vw; top: calc(50vh - 47vw); background-color: white; border-radius: 5vw; }
 div.stat div.dataarea div.title { margin-bottom: 2vw; }
 div.stat div.dataarea div.title div { float: left; height: 7vw; line-height: 7vw; color: #ff0064; font-size: 4vw; }
 body.out div.stat div.dataarea div.title div { color: #00aacd; }
 div.stat div.dataarea div.title div.text     { width: 40vw; text-align: center; }
-div.stat div.dataarea div.title div.leftbtn  { width: 15vw; text-align: left; }
-div.stat div.dataarea div.title div.rightbtn { width: 15vw; text-align: right; }
+div.stat div.dataarea div.title div.leftbtn  { width: 15vw; text-align: left; font-size: 6vw; position: relative; margin-top: -0.7vw; }
+div.stat div.dataarea div.title div.rightbtn { width: 15vw; text-align: right; font-size: 6vw; position: relative; margin-top: -0.7vw; }
 body.updatingStat div.stat div.dataarea div.title div.leftbtn { opacity: .5; }
 body.updatingStat div.stat div.dataarea div.title div.rightbtn { opacity: .5; }
 div.stat div.dataarea div.row { width: 70vw;  height: 7vw; line-height: 7vw; position: relative; color: #ff0064; }
@@ -228,29 +228,32 @@ div.stat div.dataarea div.row div.salary { width: 34.9%; text-align: right; }
 div.stat div.dataarea div.row.bb div.salary { text-align: center; }
 div.stat div.dataarea div.row div.account { width: 100%; border-bottom: 2px dashed #ff0064; text-align: right; }
 body.out div.stat div.dataarea div.row div.account { border-color: #00aacd; }
-div.inputpop { position: fixed; width: 100vw; height: 100vh; top: 0; left: 0; z-index: 100; }
-div.inputpop div.background { position: absolute; width: 100vw; height: 100vh; top: 0; left: 0; z-index: 1; background-color: rgba(0, 0, 0, .5); }
-div.inputpop div.dataarea { width: 90vw; height: 41.5vw; position: absolute; z-index: 2; left: 5vw; top: calc(50vh - 20vw); background-color: white; border-radius: 5vw; }
-div.inputpop div.dataarea div.message { width: 90vw; height: 15vw; font-size: 4vw; line-height: 15vw; text-align: center; color: #ff0064; }
-body.out div.inputpop div.dataarea div.message { color: #00aacd; }
-div.inputpop div.dataarea input { width: 60vw; margin: 0 10vw 5vw; padding: 0 5vw; height: 10vw; line-height: 10vw; font-size: 4vw; border: 0px none; border-bottom: 1vw solid #ff0064; }
-body.out div.inputpop div.dataarea input { border-color: #00aacd; }
-div.inputpop div.dataarea .clearfix { width: 100%; border-top: .5vw solid #ff0064; position: absolute; left: 0; bottom: 0; }
-body.out div.inputpop div.dataarea .clearfix { border-color: #00aacd; }
-div.inputpop div.dataarea .clearfix div { width: 45vw; height: 10vw; line-height: 10vw; font-size: 4vw; text-align: center; color: #ff0064; }
-body.out div.inputpop div.dataarea .clearfix div { color: #00aacd; }
-div.inputpop div.dataarea .clearfix div.okay { width: 44.5vw; border-left: .5vw solid #ff0064; font-weight: bold; background-color: #ff0064; color: white; border-radius: 0 0 5vw 0; }
-body.out div.inputpop div.dataarea .clearfix div.okay { border-color: #00aacd; background-color: #00aacd; color: white; }
-div.expensepop { position: fixed; width: 100vw; height: 100vh; top: 0; left: 0; z-index: 100; }
-div.expensepop div.background { position: absolute; width: 100vw; height: 100vh; top: 0; left: 0; z-index: 1; background-color: rgba(0, 0, 0, .5); }
-div.expensepop div.dataarea { width: 90vw; height: 41.5vw; position: absolute; z-index: 2; left: 5vw; top: calc(50vh - 20vw); background-color: white; border-radius: 5vw; }
-div.expensepop div.dataarea div.message { width: 90vw; height: 15vw; font-size: 4vw; line-height: 15vw; text-align: center; color: #ff0064; }
-body.out div.expensepop div.dataarea div.message { color: #00aacd; }
-div.expensepop div.dataarea input { width: 60vw; margin: 0 10vw 5vw; padding: 0 5vw; height: 10vw; line-height: 10vw; font-size: 4vw; border: 0px none; border-bottom: 1vw solid #ff0064; }
-body.out div.expensepop div.dataarea input { border-color: #00aacd; }
-div.expensepop div.dataarea .clearfix { width: 100%; border-top: .5vw solid #ff0064; position: absolute; left: 0; bottom: 0; }
-body.out div.expensepop div.dataarea .clearfix { border-color: #00aacd; }
-div.expensepop div.dataarea .clearfix div { width: 45vw; height: 10vw; line-height: 10vw; font-size: 4vw; text-align: center; color: #ff0064; }
-body.out div.expensepop div.dataarea .clearfix div { color: #00aacd; }
-div.expensepop div.dataarea .clearfix div.okay { width: 44.5vw; border-left: .5vw solid #ff0064; font-weight: bold; background-color: #ff0064; color: white; border-radius: 0 0 5vw 0; }
-body.out div.expensepop div.dataarea .clearfix div.okay { border-color: #00aacd; background-color: #00aacd; color: white; }
+div.oigeunPop { position: fixed; width: 100vw; height: 100vh; top: 0; left: 0; z-index: 100; }
+div.oigeunPop div.background { position: absolute; width: 100vw; height: 100vh; top: 0; left: 0; z-index: 1; background-color: rgba(0, 0, 0, .5); }
+div.oigeunPop div.dataarea { width: 90vw; height: 41.5vw; position: absolute; z-index: 2; left: 5vw; top: calc(50vh - 20vw); background-color: white; border-radius: 5vw; }
+div.oigeunPop div.dataarea div.message { width: 90vw; height: 15vw; font-size: 4vw; line-height: 15vw; text-align: center; color: #ff0064; }
+body.out div.oigeunPop div.dataarea div.message { color: #00aacd; }
+div.oigeunPop div.dataarea input { width: 60vw; margin: 0 10vw 5vw; padding: 0 5vw; height: 10vw; line-height: 10vw; font-size: 4vw; border: 0px none; border-bottom: 1vw solid #ff0064; }
+body.out div.oigeunPop div.dataarea input { border-color: #00aacd; }
+div.oigeunPop div.dataarea .clearfix { width: 100%; border-top: .5vw solid #ff0064; position: absolute; left: 0; bottom: 0; }
+body.out div.oigeunPop div.dataarea .clearfix { border-color: #00aacd; }
+div.oigeunPop div.dataarea .clearfix div { width: 45vw; height: 10vw; line-height: 10vw; font-size: 4vw; text-align: center; color: #ff0064; }
+body.out div.oigeunPop div.dataarea .clearfix div { color: #00aacd; }
+div.oigeunPop div.dataarea .clearfix div.okay { width: 44.5vw; border-left: .5vw solid #ff0064; font-weight: bold; background-color: #ff0064; color: white; border-radius: 0 0 5vw 0; }
+body.out div.oigeunPop div.dataarea .clearfix div.okay { border-color: #00aacd; background-color: #00aacd; color: white; }
+div.expensePop { position: fixed; width: 100vw; height: 100vh; top: 0; left: 0; z-index: 100; }
+div.expensePop div.background { position: absolute; width: 100vw; height: 100vh; top: 0; left: 0; z-index: 1; background-color: rgba(0, 0, 0, .5); }
+div.expensePop div.dataarea { width: 90vw; height: 62.5vw; position: absolute; z-index: 2; left: 5vw; top: calc(50vh - 31.25vw); background-color: white; border-radius: 5vw; }
+div.expensePop div.dataarea div.message { width: 90vw; height: 15vw; font-size: 4vw; line-height: 15vw; text-align: center; color: #ff0064; }
+body.out div.expensePop div.dataarea div.message { color: #00aacd; }
+div.expensePop div.dataarea div.label { width: 10vw; height: 10vw; line-height: 10vw; margin: 0 0 6vw 10vw; font-size: 4vw; color: #ff0064; text-align: center; }
+body.out div.expensePop div.dataarea div.label { color: #00aacd; }
+div.expensePop div.dataarea input { float:left; width: 45vw; margin: 0 10vw 5vw 5vw; padding: 0 5vw; height: 10vw; line-height: 10vw; font-size: 4vw; border: 0px none; border-bottom: 1vw solid #ff0064; }
+body.out div.expensePop div.dataarea input { border-color: #00aacd; }
+div.expensePop div.dataarea input[type=number] { text-align: right; } 
+div.expensePop div.dataarea div.bottombtn { width: 100%; border-top: .5vw solid #ff0064; position: absolute; left: 0; bottom: 0; }
+body.out div.expensePop div.dataarea div.bottombtn { border-color: #00aacd; }
+div.expensePop div.dataarea div.bottombtn div { width: 45vw; height: 10vw; line-height: 10vw; font-size: 4vw; text-align: center; color: #ff0064; }
+body.out div.expensePop div.dataarea div.bottombtn div { color: #00aacd; }
+div.expensePop div.dataarea div.bottombtn div.okay { width: 44.5vw; border-left: .5vw solid #ff0064; font-weight: bold; background-color: #ff0064; color: white; border-radius: 0 0 5vw 0; }
+body.out div.expensePop div.dataarea div.bottombtn div.okay { border-color: #00aacd; background-color: #00aacd; color: white; }
