@@ -241,3 +241,16 @@ div.inputpop div.dataarea .clearfix div { width: 45vw; height: 10vw; line-height
 body.out div.inputpop div.dataarea .clearfix div { color: #00aacd; }
 div.inputpop div.dataarea .clearfix div.okay { width: 44.5vw; border-left: .5vw solid #ff0064; font-weight: bold; background-color: #ff0064; color: white; border-radius: 0 0 5vw 0; }
 body.out div.inputpop div.dataarea .clearfix div.okay { border-color: #00aacd; background-color: #00aacd; color: white; }
+div.expensepop { position: fixed; width: 100vw; height: 100vh; top: 0; left: 0; z-index: 100; }
+div.expensepop div.background { position: absolute; width: 100vw; height: 100vh; top: 0; left: 0; z-index: 1; background-color: rgba(0, 0, 0, .5); }
+div.expensepop div.dataarea { width: 90vw; height: 41.5vw; position: absolute; z-index: 2; left: 5vw; top: calc(50vh - 20vw); background-color: white; border-radius: 5vw; }
+div.expensepop div.dataarea div.message { width: 90vw; height: 15vw; font-size: 4vw; line-height: 15vw; text-align: center; color: #ff0064; }
+body.out div.expensepop div.dataarea div.message { color: #00aacd; }
+div.expensepop div.dataarea input { width: 60vw; margin: 0 10vw 5vw; padding: 0 5vw; height: 10vw; line-height: 10vw; font-size: 4vw; border: 0px none; border-bottom: 1vw solid #ff0064; }
+body.out div.expensepop div.dataarea input { border-color: #00aacd; }
+div.expensepop div.dataarea .clearfix { width: 100%; border-top: .5vw solid #ff0064; position: absolute; left: 0; bottom: 0; }
+body.out div.expensepop div.dataarea .clearfix { border-color: #00aacd; }
+div.expensepop div.dataarea .clearfix div { width: 45vw; height: 10vw; line-height: 10vw; font-size: 4vw; text-align: center; color: #ff0064; }
+body.out div.expensepop div.dataarea .clearfix div { color: #00aacd; }
+div.expensepop div.dataarea .clearfix div.okay { width: 44.5vw; border-left: .5vw solid #ff0064; font-weight: bold; background-color: #ff0064; color: white; border-radius: 0 0 5vw 0; }
+body.out div.expensepop div.dataarea .clearfix div.okay { border-color: #00aacd; background-color: #00aacd; color: white; }
