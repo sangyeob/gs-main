@@ -223,7 +223,7 @@ $(document).ready(function() {
 		alert(error.code + ' / ' + error.message);
 		notify('GPS사용이 불가능합니다.');
 		$('div.logtime').text('GPS를 켜주세요!');
-		$('div.logtime').addClass('disabled');
+		$('div.logtime').addClass('disabled');	
 	}
 	function oigeunPop(message, callback) {
 		$('div.oigeunPop div.message').text(message);
