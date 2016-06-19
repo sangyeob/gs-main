@@ -12,13 +12,13 @@
 		<script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="/static/js/fastclick.js"></script>
 		<link rel="stylesheet" href="/static/afc/afc.css?v=3" />
-		<script type="text/javascript" src="/static/afc/afc.js"></script>
+		<script type="text/javascript" src="/static/afc/afc.js?v=2"></script>
 	</head>
 	<body>
 		<section class="page" id="login">
 			<div class="bg"></div>
 			<div class="upper">
-				<article class="default">
+				<article class="default dnone">
 					<div class="top">
 						<h2>AHYUN FURNITURE CAMPUS</h2>
 						<h3>이제 당신의 쇼핑이 더 쉬워집니다</h3>
@@ -30,24 +30,50 @@
 					</div>
 				</article>
 				<article class="pop_login dnone">
+					<div class="x_btn">&times;</div>
 					<div class="top">
 						<div>
-							<img src="/static/afc/assets/icon_small.png" alt="" class="icon">
+							<img src="/static/afc/assets/icon_small.png" alt="" class="icon" />
 						</div>
-						<div>
-							<input type="text">
+						<div class="input_field">
+							<input type="text" placeholder="E-mail" />
+							<img src="/static/afc/assets/icon_mail_100x100.png" />
 						</div>
-						<div>
-							<input type="password">
+						<div class="input_field">
+							<input type="password" placeholder="Password" />
+							<img src="/static/afc/assets/icon_key_100x100.png" />
 						</div>
-						<button>LOGIN</button>
+						<button class="login">LOGIN</button>
 					</div>
 					<div class="bot">
 						<h3>아직도 회원이 아니라면<br />가입 후 더 놀라운 혜택을 누려보세요!</h3>
-						<button>간단하게 회원가입</button>
+						<button class="signup">간단하게 회원가입</button>
 					</div>
 				</article>
+				<article class="signup dnone">
+					<div class="x_btn">&times;</div>
+					<div class="top">
+						<div>
+							<img src="/static/afc/assets/icon_small.png" alt="" class="icon" />
+						</div>
+						<button class="facebook"></button>
+						<button class="kakao"></button>
+						<button class="phone"></button>
+					</div>
+					<div class="bot">
+						<h3>이미 가입하셨다면<br />로그인 해주세요!</h3>
+						<button class="login">로그인</button>
+					</div>
+				</article>
+				<article class="signup_phone dnone">
+					
+				</article>
 			</div>
+		</section>
+		<section class="page dnone", id="main">
+			<article class="main dnone">
+				
+			</article>
 		</section>
 	</body>
 </html>
