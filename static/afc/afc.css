@@ -53,3 +53,10 @@ section#login article.signup div.bot h3 { font-size: 4vw; line-height: 6vw; font
 section#login article.signup div.bot button { width: 85vw; height: 13vw; line-height: 13vw; background-color: rgba(255, 255, 255, 1); color: #6bc5c9; border-radius: 1.5vw; font-size: 4vw; font-weight: bold; margin-top: 6vw; }
 section#login article.signup div.bot button:active { background-color: rgba(255, 255, 255, 1); }
 
+section#login article.signup_phone div.x_btn { position: absolute; font-size: 10vw; top: 5vw; right: 5vw; font-weight: 100; color: rgba(255, 255, 255, .5); width: 10vw; height: 10vw; text-align: center; line-height: 10vw; }
+section#login article.signup_phone div.top { width: 100%; position: absolute; top: 8vh; left: 0; }
+section#login article.signup_phone div.top img { width: 29.8vw; margin-bottom: 10vw; }
+section#login article.signup_phone div.top input { box-sizing: border-box; width: 70vw; height: 13vw; background-color: rgba(255, 255, 255, .2); padding-left: 15vw; font-size: 4vw; line-height: 10vw; border: 0px none; margin-bottom: 3vw; color: white; border-radius: 1vw; }
+section#login article.signup_phone div.top div.input_field { position: relative; }
+section#login article.signup_phone div.top div.input_field img { width: 8vw; height: 8vw; position: absolute; top: 2.5vw; left: 17.5vw; opacity: .5; }
+section#login article.signup_phone div.top button { box-sizing: border-box; width: 70vw; height: 13vw; background-color: #6bc5c9; font-size: 4vw; line-height: 10vw; border: 0px none; margin-bottom: 3vw; color: white; border-radius: 1vw; }
