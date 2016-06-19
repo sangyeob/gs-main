@@ -1,0 +1,39 @@
+h1, h2, h3, h4, h5, h6 { margin: 0; padding: 0; }
+
+.dnone { display: none; }
+.dblock { display: block; }
+.dinblock { display: inline-block; }
+.dinline { display: inline; }
+
+@keyframes backflow {
+	0% { background-position: 0 0; }
+	50% { background-position: 100% 0; }
+	100% { background-position: 0 0; }
+}
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+html, body { margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; }
+html, body, body > section.page { width: 100%; height: 100%; }
+
+
+
+section#login { background: url(/static/afc/assets/ikea_back.png) 0 0 no-repeat transparent; background-size: cover; animation-name: backflow; animation-duration: 150s; position: relative; }
+section#login div.bg { width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); position: absolute; }
+section#login div.upper, section#login div.upper > article { width: 100%; height: 100%; position: relative; color: white; text-align: center; }
+
+section#login article.default div.top { line-height: 1.5em; padding-top: 14vh; }
+section#login article.default div.top h2 { font-size: 4vw; font-weight: normal; }
+section#login article.default div.top h3 { font-size: 4vw; color: #6bc5c9; margin-top: 2vh; font-weight: normal; }
+section#login article.default img { width: 100%; position: absolute; top: 23.3vh; left: 0; }
+section#login article.default div.bot { width: 100%; position: absolute; bottom: 8vh; left: 0; }
+section#login article.default div.bot h3 { font-size: 4vw; line-height: 6vw; font-weight: normal; }
+section#login article.default button { width: 85vw; height: 13vw; line-height: 13vw; background-color: rgba(255, 255, 255, 1); border-radius: 1.5vw; font-size: 4vw; font-weight: bold; margin-top: 6vw; color: #6bc5c9; }
+section#login article.default button:active { background-color: rgba(255, 255, 255, 1); }
+
+section#login article.pop_login {  }
+section#login article.pop_login div.top { width: 100%; position: absolute; top: 8vh; left: 0; }
+section#login article.pop_login div.top img { width: 29.8vw; margin-bottom: 10vw; }
+section#login article.pop_login div.top input { box-sizing: border-box; width: 60vw; height: 13vw; background-color: rgba(255, 255, 255, .8); }
+section#login article.pop_login div.bot { width: 100%; position: absolute; bottom: 8vh; left: 0; }
+section#login article.pop_login div.bot h3 { font-size: 4vw; line-height: 6vw; font-weight: normal; }
+section#login article.pop_login div.bot button { width: 85vw; height: 13vw; line-height: 13vw; background-color: rgba(255, 255, 255, 1); color: #6bc5c9; border-radius: 1.5vw; font-size: 4vw; font-weight: bold; margin-top: 6vw; }
+section#login article.pop_login div.bot button:active { background-color: rgba(255, 255, 255, 1); }

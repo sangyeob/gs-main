@@ -1,0 +1,7 @@
+Views = {
+	
+};
+
+$(document).ready(function() {
+
+});
