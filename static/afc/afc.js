@@ -157,6 +157,33 @@ addView('login', 'signup_phone', function() {
 addView('main', 'main', function() {
 	$view = $('section#' + this.section + ' article.' + this.article);
 	$view.removeClass('dnone');
+	/*$view.find('input[type=file]').on('change', function(event) {
+		// qr code detect
+	})*/
+	$view.find('div.btnleft').on('touchstart', function() {
+		var i, s;
+		for(i = 1; i <= 6; i ++)
+			if($view.find('article.image.selected').hasClass('image' + i))
+				s = i;
+		if(s == 1) return false;
+		else s -= 1;
+		$view.find('article.image.selected').removeClass('selected');
+		$view.find('article.image' + s).addClass('selected');
+		$view.find('ul.dots li.dot').removeClass('selected');
+		$view.find('ul.dots li.dot' + s).addClass('selected');
+	});
+	$view.find('div.btnright').on('touchstart', function() {
+		var i, s;
+		for(i = 1; i <= 6; i ++)
+			if($view.find('article.image.selected').hasClass('image' + i))
+				s = i;
+		if(s == 6) return false;
+		else s += 1;
+		$view.find('article.image.selected').removeClass('selected');
+		$view.find('article.image' + s).addClass('selected');
+		$view.find('ul.dots li.dot').removeClass('selected');
+		$view.find('ul.dots li.dot' + s).addClass('selected');
+	});
 }, function() {
 	$view = $('section#' + this.section + ' article.' + this.article);
 	$view.addClass('dnone');

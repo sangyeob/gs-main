@@ -1,0 +1,13 @@
+ChangeLog.rst
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+pip-egg-info/zbarlight.egg-info/PKG-INFO
+pip-egg-info/zbarlight.egg-info/SOURCES.txt
+pip-egg-info/zbarlight.egg-info/dependency_links.txt
+pip-egg-info/zbarlight.egg-info/not-zip-safe
+pip-egg-info/zbarlight.egg-info/requires.txt
+pip-egg-info/zbarlight.egg-info/top_level.txt
+src/zbarlight/__init__.py
+src/zbarlight/_zbarlight.c
