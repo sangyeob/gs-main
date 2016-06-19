@@ -5,6 +5,15 @@ h1, h2, h3, h4, h5, h6 { margin: 0; padding: 0; }
 .dinblock { display: inline-block; }
 .dinline { display: inline; }
 
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 @keyframes backflow {
 	0% { background-position: 0 0; }
 	50% { background-position: 100% 0; }
@@ -63,7 +72,7 @@ section#login article.signup_phone div.top button { box-sizing: border-box; widt
 
 section#main article.main { width: 100vw; height: 100vh; position: relative; overflow: hidden; background-color: #f8f8f8;}
 section#main article.main div.carousel { width: 100vw; height: 50vh; position: relative; }
-section#main article.main div.carousel div.logo { text-align: center; position: absolute; z-index: 10; width: 100%; height: 15vw; top: 10vw; }
+section#main article.main div.carousel div.logo { text-align: center; position: absolute; z-index: 10; width: 100%; height: 15vw; top: calc(15vh - 15.5vw); }
 section#main article.main div.carousel img { width: 15vw; display: inline; }
 section#main article.main div.carousel section.imagestream { width: 100vw; height: 50vh; position: absolute; top: 0; left: 0; }
 section#main article.main div.carousel section.imagestream div.blackbg { width: 100%; height: 100%; position: absolute; top: 0; left: 0; background-color: rgba(0, 0, 0, .3); }
@@ -92,15 +101,56 @@ section#main article.main ul.menu { margin: 2.5vh 0 0; padding: 0; position: rel
 section#main article.main ul.menu li { width: 50vw; height: 19.4vh; display: inline-block; position: relative; }
 section#main article.main ul.menu li img { width: 30vw; height: 30vw; position: absolute; left: 10vw; top: calc(9.7vh - 20vw);}
 section#main article.main ul.menu li div.text { width: 50vw; height: 5vw; line-height: 5vw; font-size: 4vw; text-align: center; position: absolute; left: 0; top: calc(9.7vh + 7.5vw); color: #555; }
-div.orderlist { width: 100vw; height: 100vh; position: absolute; top: 93.7vh; left: 0; background-color: #6bc5c9; color: white; }
-div.orderlist div.peek { width: 100vw; height: 6.3vh; color: white; }
-div.orderlist div.peek div.text { width: 100vw; height: 6.3vh; position: relative; text-align: center;line-height: 6.3vh; font-size: 4vw; }
-div.orderlist div.peek img.icon { position: absolute;}
-div.orderlist div.peek img.icon_orderlist { top: 1.15vh; left: 3vw; height: 4vh;  }
-div.orderlist div.peek img.icon_arrow { top: 1.65vh; right: 3vw; height: 3vh; }
+section#main article.main div.orderlist { width: 100vw; height: 100vh; position: absolute; top: 93.7vh; left: 0; background-color: #6bc5c9; color: white; }
+section#main article.main div.orderlist div.peek { width: 100vw; height: 6.3vh; color: white; }
+section#main article.main div.orderlist div.peek div.text { width: 100vw; height: 6.3vh; position: relative; text-align: center;line-height: 6.3vh; font-size: 4vw; }
+section#main article.main div.orderlist div.peek img.icon { position: absolute;}
+section#main article.main div.orderlist div.peek img.icon_orderlist { top: 1.15vh; left: 3vw; height: 4vh;  }
+section#main article.main div.orderlist div.peek img.icon_arrow { top: 1.65vh; right: 3vw; height: 3vh; }
 
+section#main article.shop_list { width: 100vw; height: 100vh; overflow: scroll; }
+section#main article.shop_list header { width: 100vw; height: 6.3vh; color: #6bc5c9; border-top: 60px solid #6bc5c9; border-bottom: 2px solid #6bc5c9; position: fixed; top: 0; left: 0; background-color: white; }
+section#main article.shop_list header div.text { width: 100vw; height: 6.3vh; position: relative; text-align: center;line-height: 6.3vh; font-size: 4vw; }
+section#main article.shop_list header img.icon { position: absolute;}
+section#main article.shop_list header img.icon_arrow { top: 1.5vh; left: 3vw; height: 3vh; z-index: 10; }
+section#main article.shop_list ul.list { margin: 0; padding: calc(6.3vh + 62px) 0 0; list-style: none; }
+section#main article.shop_list ul.list li { width: 90vw; padding: 5vw; border-bottom: 2px solid #6bc5c9;}
+section#main article.shop_list ul.list li > div { display: inline-block; }
+section#main article.shop_list ul.list li > div.dnone { display: none; }
+section#main article.shop_list ul.list li div.shoppic { width: 25vw; height: 25vw; }
+section#main article.shop_list ul.list li.shop1 div.shoppic { background: url(/static/afc/assets/shop_1.jpg) 50% 0 no-repeat transparent; background-size: cover; }
+section#main article.shop_list ul.list li.shop2 div.shoppic { background: url(/static/afc/assets/shop_2.jpg) 50% 0 no-repeat transparent; background-size: cover; }
+section#main article.shop_list ul.list li.shop3 div.shoppic { background: url(/static/afc/assets/shop_3.jpg) 50% 0 no-repeat transparent; background-size: cover; }
+section#main article.shop_list ul.list li.shop4 div.shoppic { background: url(/static/afc/assets/shop_4.jpg) 50% 0 no-repeat transparent; background-size: cover; }
+section#main article.shop_list ul.list li.shop5 div.shoppic { background: url(/static/afc/assets/shop_5.jpg) 50% 0 no-repeat transparent; background-size: cover; }
+section#main article.shop_list ul.list li.shop6 div.shoppic { background: url(/static/afc/assets/shop_6.jpg) 50% 0 no-repeat transparent; background-size: cover; }
+section#main article.shop_list ul.list li.shop7 div.shoppic { background: url(/static/afc/assets/shop_7.jpg) 50% 0 no-repeat transparent; background-size: cover; }
+section#main article.shop_list ul.list li.shop8 div.shoppic { background: url(/static/afc/assets/shop_8.jpg) 50% 0 no-repeat transparent; background-size: cover; }
+section#main article.shop_list ul.list li div.desc { width: 60vw; margin-left: 5vw; }
+section#main article.shop_list ul.list li div.desc h1 { font-size: 4vw; line-height: 10vw; color: #6bc5c9; margin: 0 0 0; padding: 0; }
+section#main article.shop_list ul.list li div.desc > div img { width: 4vw; height: 4vw; margin: 1.75vw;  }
+section#main article.shop_list ul.list li div.desc > div span { line-height: 7.5vw; font-size: 3vw; vertical-align: top; color: #555; }
 
-
-
+section#main article.shop_detail { width: 100vw; height: 100vh; overflow: scroll; }
+section#main article.shop_detail header { width: 100vw; height: 6.3vh; color: #6bc5c9; border-top: 60px solid #6bc5c9; border-bottom: 2px solid #6bc5c9; position: fixed; top: 0; left: 0; background-color: white; }
+section#main article.shop_detail header div.text { width: 100vw; height: 6.3vh; position: relative; text-align: center;line-height: 6.3vh; font-size: 4vw; }
+section#main article.shop_detail header img.icon { position: absolute;}
+section#main article.shop_detail header img.icon_arrow { top: 1.5vh; left: 3vw; height: 3vh; z-index: 10; }
+section#main article.shop_detail img.map { display: block; margin-top: calc(6.3vh + 62px); width: 100vw; }
+section#main article.shop_detail section.desc { width: 90vw; padding: 5vw; }
+section#main article.shop_detail section.desc div.loc { width: 90vw; height: 5vw; line-height: 5vw; border-bottom: 1px solid #888; color: #777; font-size: 2.5vw; }
+section#main article.shop_detail section.desc div.oneliner { font-size: 3.5vw; color: #777; margin-top: 2vw; }
+section#main article.shop_detail section.desc div.shopname { font-size: 6vw; color: #555; margin-top: 2vw; }
+section#main article.shop_detail section.desc div.time { font-size: 3vw; line-height: 4vw; color: #777; }
+section#main article.shop_detail section.desc div.description { font-size: 1.5vw; line-height: 4vw; color: #777; margin-top: 5vw; }
+section#main article.shop_detail section.desc div.btns { margin-top: 4vw; padding-bottom: 10vh; }
+section#main article.shop_detail section.desc div.btns a { display: inline-block; width: 42.5vw; height: 10vw; line-height: 10vw; font-size: 4vw; background-color: #6bc5c9; color: white; text-decoration: none; text-align: center; border-radius: 1vw; vertical-align: top; }
+section#main article.shop_detail section.desc div.btns button { display: inline-block; width: 42.5vw; height: 10vw; line-height: 10vw; font-size: 4vw; background-color: #f19cac; color: white; text-decoration: none; text-align: center; border-radius: 1vw; margin-left: 5vw; border: 0 none; vertical-align: top; }
+section#main article.shop_detail div.goodslist { width: 100vw; height: 100vh; position: fixed; top: 93.7vh; left: 0; background-color: #6bc5c9; color: white; }
+section#main article.shop_detail div.goodslist div.peek { width: 100vw; height: 6.3vh; color: white; }
+section#main article.shop_detail div.goodslist div.peek div.text { width: 100vw; height: 6.3vh; position: relative; text-align: center;line-height: 6.3vh; font-size: 4vw; }
+section#main article.shop_detail div.goodslist div.peek img.icon { position: absolute;}
+section#main article.shop_detail div.goodslist div.peek img.icon_goodslist { top: 1.15vh; left: 3vw; height: 4vh;  }
+section#main article.shop_detail div.goodslist div.peek img.icon_arrow { top: 1.65vh; right: 3vw; height: 3vh; }
 
 

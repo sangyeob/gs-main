@@ -184,9 +184,51 @@ addView('main', 'main', function() {
 		$view.find('ul.dots li.dot').removeClass('selected');
 		$view.find('ul.dots li.dot' + s).addClass('selected');
 	});
+
+	$view.find('li.menuitem4').on('touchstart', function() {
+		changeView('main', 'shop_list');
+	});
 }, function() {
 	$view = $('section#' + this.section + ' article.' + this.article);
 	$view.addClass('dnone');
+	$view.find('div.btnleft').off('touchstart');
+	$view.find('div.btnright').off('touchstart');
+	$view.find('li.menuitem4').off('touchstart');
+});
+
+addView('main', 'shop_list', function() {
+	$view = $('section#' + this.section + ' article.' + this.article);
+	$view.removeClass('dnone');
+	$view.find('header img.icon_arrow').on('touchstart', function() {
+		changeView('main', 'main');
+	});
+	$view.find('li.shop').on('touchstart', function() {
+		$('article.shop_detail section.map img.map').attr('src', 'http://maps.googleapis.com/maps/api/staticmap?center=' + $(this).attr('data-latlng') + '&zoom=18&scale=false&size=600x400&maptype=roadmap&format=png&visual_refresh=true&markers=size:large%7Ccolor:0x6bc5c9%7Clabel:%7C' + $(this).attr('data-latlng'));
+		$('article.shop_detail section.desc div.loc').text($(this).find('div.loc span').text());
+		$('article.shop_detail section.desc div.oneliner').text($(this).attr('data-oneliner'));
+		$('article.shop_detail header div.text').text($(this).find('div.desc h1').text());
+		$('article.shop_detail section.desc div.shopname').text($(this).find('div.desc h1').text());
+		$('article.shop_detail section.desc div.time').text('10:00 AM - 09:00 PM');
+		$('article.shop_detail section.desc div.description').html($(this).find('div.description').html());
+		changeView('main', 'shop_detail');
+	});
+}, function() {
+	$view = $('section#' + this.section + ' article.' + this.article);
+	$view.addClass('dnone');
+	$view.find('header img.icon_arrow').off('touchstart');
+	$view.find('li.shop').off('touchstart');
+});
+
+addView('main', 'shop_detail', function() {
+	$view = $('section#' + this.section + ' article.' + this.article);
+	$view.removeClass('dnone');
+	$view.find('header img.icon_arrow').on('touchstart', function() {
+		changeView('main', 'shop_list');
+	});
+}, function() {
+	$view = $('section#' + this.section + ' article.' + this.article);
+	$view.addClass('dnone');
+	$view.find('header img.icon_arrow').off('touchstart');
 });
 
 $(document).ready(function() {
