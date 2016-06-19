@@ -191,5 +191,5 @@ addView('main', 'main', function() {
 
 $(document).ready(function() {
 	window.active_view = undefined;
-	changeView('main', 'main');
+	changeView('login', 'default');
 });
