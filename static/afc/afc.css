@@ -60,3 +60,27 @@ section#login article.signup_phone div.top input { box-sizing: border-box; width
 section#login article.signup_phone div.top div.input_field { position: relative; }
 section#login article.signup_phone div.top div.input_field img { width: 8vw; height: 8vw; position: absolute; top: 2.5vw; left: 17.5vw; opacity: .5; }
 section#login article.signup_phone div.top button { box-sizing: border-box; width: 70vw; height: 13vw; background-color: #6bc5c9; font-size: 4vw; line-height: 10vw; border: 0px none; margin-bottom: 3vw; color: white; border-radius: 1vw; }
+
+
+section#main article.main { width: 100%; height: 100%;  }
+section#main article.main div.carousel { width: 100vw; height: 50vh; overflow: scroll; position: relative; }
+section#main article.main div.carousel section.imagestream { width: 600vw; height: 50vh; position: absolute; top: 0; left: 0; }
+section#main article.main div.carousel section.imagestream div.blackbg { width: 100%; height: 100%; position: absolute; top: 0; left: 0; background-color: rgba(0, 0, 0, .3); }
+section#main article.main div.carousel section.imagestream > article { width: 100vw; height: 50vh; display: inline-block; }
+section#main article.main div.carousel section.imagestream article.image1 { background: url(http://img.ezmember.co.kr/cache/board/2014/07/03/7d5cc823ff00d40cb4c4de1ab6a39d62.jpg) 0 0 no-repeat transparent; background-size: cover; }
+section#main article.main div.carousel div.btnleft,
+section#main article.main div.carousel div.btnright { color: white; font-size: 10vw; line-height: 15vw; width: 10vw; height: 10vw; position: absolute; top: 25vh; margin-top: -5vw; }
+section#main article.main div.carousel div.btnleft { left: 5vw; }
+section#main article.main div.carousel div.btnright { right: 5vw; }
+section#main article.main div.carousel div.btnleft img,
+section#main article.main div.carousel div.btnright img { width: 100%; height: 100%; }
+section#main article.main div.carousel ul.dots { margin: 0; padding: 0; width: 100%; position: absolute; bottom: 7vw; left: 0; list-style: none; text-align: center; }
+section#main article.main div.carousel ul.dots li { width: 2vw; height: 2vw; border-radius: 1vw; display: inline-block; margin-right: 3vw; background-color: rgba(255, 255, 255, .4); }
+section#main article.main div.carousel ul.dots li:last-child { margin-right: 0; }
+section#main article.main div.carousel ul.dots li.selected { background-color: white; }
+
+
+
+
+
+
