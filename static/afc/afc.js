@@ -35,9 +35,12 @@ $(document).ready(function() {
 	function changeView(section_name, view_name) {
 		if(window.active_view == undefined) {
 			$('section#' + section_name).removeClass('dnone');
+			Views[section_name + view_name].view.removeClass('dnone');
 			Views[section_name + view_name].show();
 		} else {
+			Views[window.active_view].view.addClass('dnone');
 			Views[window.active_view].hide();
+			Views[section_name + view_name].view.removeClass('dnone');
 			Views[section_name + view_name].show();
 			if(Views[window.active_view].section != section_name) {
 				$('section#' + Views[window.active_view].section).addClass('dnone');
@@ -46,6 +49,7 @@ $(document).ready(function() {
 		}
 		window.active_view = section_name + view_name;
 	}
+
 	function addView(section_name, view_name, show, hide) {
 		Views[section_name + view_name] = {
 			'section': section_name,
@@ -58,21 +62,24 @@ $(document).ready(function() {
 
 	addView('login', 'default', function() {
 		$view = this.view;
-		$view.removeClass('dnone');
-		$view.find('button').on('touchstart', function() {
+		$view.find('button.lookaround').on('touchstart', function() {
+			changeView('main', 'main');
+			return false;
+		});
+		$view.find('button.signup').on('touchstart', function() {
 			changeView('login', 'pop_login');
+			return false;
 		});
 	}, function() {
 		$view = this.view;
-		$view.addClass('dnone');
 		$view.find('button').off('touchstart');
 	});
 
 	addView('login', 'pop_login', function() {
 		$view = this.view;
-		$view.removeClass('dnone');
 		$view.find('div.x_btn').on('touchstart', function() {
 			changeView('login', 'default');
+			return false;
 		});
 		$view.find('button.login').on('touchstart', function() {
 			if($view.find('input[type=text]').val().trim() == '' || $view.find('input[type=password]').val().trim() == '') {
@@ -88,10 +95,10 @@ $(document).ready(function() {
 		});
 		$view.find('button.signup').on('touchstart', function() {
 			changeView('login', 'signup');
+			return false;
 		});
 	}, function() {
 		$view = this.view;
-		$view.addClass('dnone');
 		$view.find('div.x_btn').off('touchstart');
 		$view.find('button.login').off('touchstart');
 		$view.find('button.signup').off('touchstart');
@@ -99,22 +106,24 @@ $(document).ready(function() {
 
 	addView('login', 'signup', function() {
 		$view = this.view;
-		$view.removeClass('dnone');
 		$view.find('div.x_btn').on('touchstart', function() {
 			changeView('login', 'pop_login');
+			return false;
 		});
 		$view.find('button.facebook, button.kakao').on('touchstart', function() {
 			changeView('main', 'main');
+			return false;
 		});
 		$view.find('button.phone').on('touchstart', function() {
 			changeView('login', 'signup_phone');
+			return false;
 		});
 		$view.find('button.login').on('touchstart', function() {
 			changeView('login', 'pop_login');
+			return false;
 		});
 	}, function() {
 		$view = this.view;
-		$view.addClass('dnone');
 		$view.find('div.x_btn').off('touchstart');
 		$view.find('button.facebook, button.kakao').off('touchstart');
 		$view.find('button.phone').off('touchstart');
@@ -123,7 +132,6 @@ $(document).ready(function() {
 
 	addView('login', 'signup_phone', function() {
 		$view = this.view;
-		$view.removeClass('dnone');
 		$view.find('div.x_btn').on('touchstart', function() {
 			changeView('login', 'signup');
 		});
@@ -136,14 +144,12 @@ $(document).ready(function() {
 		});
 	}, function() {
 		$view = this.view;
-		$view.addClass('dnone');
 		$view.find('div.x_btn').off('touchstart');
 		$view.find('button.signup').off('touchstart');
 	});
 
 	addView('main', 'main', function() {
 		$view = this.view;
-		$view.removeClass('dnone');
 		/*$view.find('input[type=file]').on('change', function(event) {
 			// qr code detect
 		})*/
@@ -178,20 +184,43 @@ $(document).ready(function() {
 			else $view.find('div.btnright').removeClass('dnone');
 		});
 
+		$view.find('li.menuitem1').on('click', function() {
+			changeView('main', 'catalog');
+			return false;
+		});
+
+		$view.find('li.menuitem2').on('click', function() {
+			changeView('main', 'qrscan');
+			return false;
+		});
+
+		$view.find('li.menuitem3').on('click', function() {
+			changeView('main', 'project');
+			return false;
+		});
+
 		$view.find('li.menuitem4').on('click', function() {
 			changeView('main', 'shop_list');
+			return false;
 		});
+		$view.find('div.orderlist div.peek').on('touchstart', function() {
+			$view.toggleClass('list_opened');
+			return false;
+		});
+
 	}, function() {
 		$view = this.view;
-		$view.addClass('dnone');
 		$view.find('div.btnleft').off('touchstart');
 		$view.find('div.btnright').off('touchstart');
+		$view.find('li.menuitem1').off('click');
+		$view.find('li.menuitem2').off('click');
+		$view.find('li.menuitem3').off('click');
 		$view.find('li.menuitem4').off('click');
+		$view.find('div.orderlist div.peek').off('touchstart');
 	});
 
 	addView('main', 'shop_list', function() {
 		$view = this.view;
-		$view.removeClass('dnone');
 		$view.find('header img.icon_arrow').on('touchstart', function() {
 			changeView('main', 'main');
 		});
@@ -204,32 +233,80 @@ $(document).ready(function() {
 			$('article.shop_detail section.desc div.time').text('10:00 AM - 09:00 PM');
 			$('article.shop_detail section.desc div.description').html($(this).find('div.description').html());
 			changeView('main', 'shop_detail');
+			return false;
 		});
 	}, function() {
 		$view = this.view;
-		$view.addClass('dnone');
 		$view.find('header img.icon_arrow').off('touchstart');
 		$view.find('li.shop').off('click');
 	});
 
 	addView('main', 'shop_detail', function() {
 		$view = this.view;
-		$view.removeClass('dnone');
 		$view.find('header img.icon_arrow').on('touchstart', function() {
 			changeView('main', 'shop_list');
+			return false;
 		});
 		$view.find('div.goodslist div.peek').on('touchstart', function() {
 			$view.toggleClass('list_opened');
+			return false;
 		});
 	}, function() {
 		$view = this.view;
-		$view.addClass('dnone');
 		$view.find('header img.icon_arrow').off('touchstart');
 		$view.find('div.goodslist div.peek').off('touchstart');
 		$view.removeClass('list_opened');
 	});
 
+	addView('main', 'catalog', function() {
+		$view = this.view;
+		$view.find('header img.icon_arrow').on('touchstart', function() {
+			changeView('main', 'main');
+			return false;
+		});
+		$view.find('nav ul li').on('click', function() {
+			$(this).parent().find('li.selected').removeClass('selected');
+			$(this).addClass('selected');
+			var i, s = 0;
+			for(i = 1; i <= 6; i ++) {
+				if($(this).hasClass('item' + i)) {
+					s = i;
+					break;
+				}
+			}
+			for(i = 1; i <= 11; i ++) {
+				$view.find('div.img' + i).css('background-image', 'url(/static/afc/product/product-' + s + '-' + i + '.jpg)');
+			}
+		});
+	}, function() {
+		$view = this.view;
+		$view.find('header img.icon_arrow').off('touchstart');
+		$view.find('nav ul li').off('click');
+	});
+
+	addView('main', 'qrscan', function() {
+		$view = this.view;
+		$view.find('header img.icon_arrow').on('touchstart', function() {
+			changeView('main', 'main');
+			return false;
+		});
+	}, function() {
+		$view = this.view;
+		$view.find('header img.icon_arrow').off('touchstart');
+	});
+
+	addView('main', 'project', function() {
+		$view = this.view;
+		$view.find('header img.icon_arrow').on('touchstart', function() {
+			changeView('main', 'main');
+			return false;
+		});
+	}, function() {
+		$view = this.view;
+		$view.find('header img.icon_arrow').off('touchstart');
+	});
+
 	window.active_view = undefined;
-	// changeView('main', 'shop_list');
-	changeView('login', 'default');
+	changeView('main', 'catalog');
+	//changeView('login', 'default');
 });
