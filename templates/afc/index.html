@@ -11,6 +11,7 @@
 		<link rel="apple-touch-icon" sizes="152x152" href="/static/afc/assets/icon_152.png" />
 		<script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="/static/js/fastclick.js"></script>
+		<script type="text/javascript" src="/static/afc/product_info.js"></script>
 		<link rel="stylesheet" href="/static/afc/afc.css?v={{ context.rand }}" />
 		<script type="text/javascript" src="/static/afc/afc.js?v={{ context.rand }}"></script>
 	</head>
@@ -179,18 +180,58 @@
 					</ul>
 				</nav>
 				<section class="scrollable">
-					<div class="img1"></div>
+					<div class="product img1" data-product-id="product-1-1">
+						<div class="info">
+							<div class="name">거실 티비 올려놓는거</div>
+							<div class="price">KRW 100,000</div>
+						</div>
+					</div>
 					<div>
-						<div class="img2"></div><div class="img3"></div>
+						<div class="product img2" data-product-id="product-1-2">
+							<div class="info">
+								<div class="name">KLASDJ</div>
+							</div>
+						</div><div class="product img3" data-product-id="product-1-3">
+							<div class="info">
+								<div class="name">SJKLD</div>
+							</div>
+						</div>
 					</div>
 					<h3>MD 추천</h3>
 					<div>
-						<div class="img4"></div><div class="img5"></div><div class="img6"></div><div class="img7"></div>
+						<div class="product img4" data-product-id="product-1-4"></div><div class="product img5" data-product-id="product-1-5"></div><div class="product img6" data-product-id="product-1-6"></div><div class=	"product img7" data-product-id="product-1-7"></div>
 					</div>
 					<div>
-						<div class="img8"></div><div class="img9"></div><div class="img10"></div><div class="img11"></div>
+						<div class="product img8" data-product-id="product-1-8"></div><div class="product img9" data-product-id="product-1-9"></div><div class="product img10" data-product-id="product-1-10"></div><div class="product img11" data-product-id="product-1-11"></div>
 					</div>
 				</section>
+				<div class="orderlist">
+					<div class="peek">
+						<img class="icon icon_orderlist" src="/static/afc/assets/icon_orderlist_100x100.png" alt="" class="icon" />
+						<div class="text">주문내역 확인하기</div>
+						<img class="icon icon_arrow" src="/static/afc/assets/icon_arrow_up_white_100x100.png" alt="" class="icon_up">
+					</div>
+				</div>
+			</article>
+			<article class="product_detail dnone">
+				<header>
+					<img src="/static/afc/assets/icon_arrow_left_white_100x100.png" alt="" class="icon icon_arrow" />
+					<div class="text"></div>
+				</header>
+				<section class="product_image"></section>
+				<section class="desc scrollable">
+					<div class="loc"></div>
+					<div class="shopname"></div>
+					<div class="time"></div>
+					<div class="btns"><a href="#">매장 찾기</a><button>제품 담기</button></div>
+				</section>
+				<div class="orderlist">
+					<div class="peek">
+						<img class="icon icon_orderlist" src="/static/afc/assets/icon_orderlist_100x100.png" alt="" class="icon" />
+						<div class="text">주문내역 확인하기</div>
+						<img class="icon icon_arrow" src="/static/afc/assets/icon_arrow_up_white_100x100.png" alt="" class="icon_up">
+					</div>
+				</div>
 			</article>
 			<article class="qrscan dnone">
 				<header>
@@ -203,6 +244,22 @@
 					<img src="/static/afc/assets/icon_arrow_left_white_100x100.png" alt="" class="icon icon_arrow">
 					<div class="text">AFC 프로젝트</div>
 				</header>
+				<div class="scrollcontainer">
+					<img src="/static/sogae.png" />
+					<div class="title">방명록</div>
+					<div class="commentdiv">
+						<input type="text" class="author" name="author" placeholder="이름" /><input type="text" class="comment" name="comment" placeholder="내용" /><button class="submit">글 남기기</button>
+					</div>
+					<ul class="comments">
+					{% for c in context.comments %}
+						<li class="comment">
+							<div class="author">{{ c.author }}</div>
+							<div class="comment">{{ c.article }}</div>
+							<div class="timestamp">{{ c.timestamp|safe }}</div>
+						</li>
+					{% endfor %}
+					</ul>
+				</div>
 			</article>
 		</section>
 	</body>

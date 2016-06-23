@@ -165,9 +165,9 @@ section#main article.catalog nav.category ul li { display: inline-block; width: 
 section#main article.catalog nav.category ul li.selected { border-bottom: 1vw solid #6bc5c9; font-weight: bold; }
 section#main article.catalog section.scrollable { width: 100vw; height: calc(93.7vh - 62px - 9vw); overflow: scroll; position: relative; top: -1vw; left: 0; z-index: 0; -webkit-overflow-scrolling: touch; }
 section#main article.catalog section.scrollable h3 { font-size: 4vw; margin: 4vw 0 2vw; padding: 2vw 15vw 1vw 2vw; border-bottom: 1vw solid #6bc5c9; display: inline-block; color: #6bc5c9; }
-section#main article.catalog section.scrollable div.img1 { width: 100vw; height: 66.6vw; background: url(/static/afc/product/product-1-1.jpg) 50% 50% no-repeat transparent; background-size: cover; }
-section#main article.catalog section.scrollable div.img2 { width: 50vw; height: 50vw; background: url(/static/afc/product/product-1-2.jpg) 50% 50% no-repeat transparent; background-size: cover; display: inline-block; vertical-align: top; }
-section#main article.catalog section.scrollable div.img3 { width: 50vw; height: 50vw; background: url(/static/afc/product/product-1-3.jpg) 50% 50% no-repeat transparent; background-size: cover; display: inline-block; vertical-align: top; }
+section#main article.catalog section.scrollable div.img1 { width: 100vw; height: 66.6vw; background: url(/static/afc/product/product-1-1.jpg) 50% 50% no-repeat transparent; background-size: cover; position: relative; }
+section#main article.catalog section.scrollable div.img2 { width: 50vw; height: 50vw; background: url(/static/afc/product/product-1-2.jpg) 50% 50% no-repeat transparent; background-size: cover; display: inline-block; vertical-align: top; position: relative; }
+section#main article.catalog section.scrollable div.img3 { width: 50vw; height: 50vw; background: url(/static/afc/product/product-1-3.jpg) 50% 50% no-repeat transparent; background-size: cover; display: inline-block; vertical-align: top; position: relative; }
 section#main article.catalog section.scrollable div.img4 { width: 25vw; height: 25vw; background: url(/static/afc/product/product-1-4.jpg) 50% 50% no-repeat transparent; background-size: cover; display: inline-block; vertical-align: top; }
 section#main article.catalog section.scrollable div.img5 { width: 25vw; height: 25vw; background: url(/static/afc/product/product-1-5.jpg) 50% 50% no-repeat transparent; background-size: cover; display: inline-block; vertical-align: top; }
 section#main article.catalog section.scrollable div.img6 { width: 25vw; height: 25vw; background: url(/static/afc/product/product-1-6.jpg) 50% 50% no-repeat transparent; background-size: cover; display: inline-block; vertical-align: top; }
@@ -176,4 +176,47 @@ section#main article.catalog section.scrollable div.img8 { width: 25vw; height: 
 section#main article.catalog section.scrollable div.img9 { width: 25vw; height: 25vw; background: url(/static/afc/product/product-1-9.jpg) 50% 50% no-repeat transparent; background-size: cover; display: inline-block; vertical-align: top; }
 section#main article.catalog section.scrollable div.img10 { width: 25vw; height: 25vw; background: url(/static/afc/product/product-1-10.jpg) 50% 50% no-repeat transparent; background-size: cover; display: inline-block; vertical-align: top; }
 section#main article.catalog section.scrollable div.img11 { width: 25vw; height: 25vw; background: url(/static/afc/product/product-1-11.jpg) 50% 50% no-repeat transparent; background-size: cover; display: inline-block; vertical-align: top; }
+section#main article.catalog section.scrollable div.img1 div.info { position: absolute; left: 0; bottom: 10vw; padding: 5vw 20vw 5vw 10vw; background-color: rgba(0, 0, 0, .5); color: white; font-size: 4vw; line-height: 5vw; }
+section#main article.catalog section.scrollable div.img1 div.price { font-size: 3vw; }
+section#main article.catalog section.scrollable div.img2 div.info,
+section#main article.catalog section.scrollable div.img3 div.info { position: absolute; left: 0; bottom: 0; padding: 3vw 0; background-color: rgba(0, 0, 0, .3); color: white; font-size: 3vw; line-height: 5vw; width: 100%; text-align: center; }
+section#main article.catalog div.orderlist { width: 100vw; height: 100vh; position: absolute; top: 93.7vh; left: 0; background-color: white; z-index: 100; box-sizing: border-box; transition: top .5s, border-top .5s; }
+section#main article.catalog div.orderlist div.peek { width: 100vw; height: 6.3vh; color: white; position: relative; top: 0; left: 0; background-color: #6bc5c9;  color:  white;}
+section#main article.catalog div.orderlist div.peek div.text { width: 100vw; height: 6.3vh; position: relative; text-align: center;line-height: 6.3vh; font-size: 4vw; }
+section#main article.catalog div.orderlist div.peek img.icon { position: absolute;}
+section#main article.catalog div.orderlist div.peek img.icon_orderlist { top: 1.15vh; left: 3vw; height: 4vh;  }
+section#main article.catalog div.orderlist div.peek img.icon_arrow { top: 1.65vh; right: 3vw; height: 3vh; }
+section#main article.catalog.list_opened div.orderlist { top: 0; border-top: 60px solid #6bc5c9; }
+section#main article.catalog.list_opened div.orderlist div.peek img.icon_arrow { transform: rotate(180deg); }
 
+section#main article.product_detail section.product_image { display: block; margin-top: calc(6.3vh + 62px); width: 100vw; height: 100vw; background-position: 50% 50%; background-size: cover; }
+section#main article.product_detail section.desc { width: 90vw; padding: 5vw; height: calc(87.4vh - 76.66vw - 62px); overflow: scroll; -webkit-overflow-scrolling: touch; }
+section#main article.product_detail section.desc div.loc { width: 90vw; height: 5vw; line-height: 5vw; border-bottom: 1px solid #888; color: #777; font-size: 2.5vw; }
+section#main article.product_detail section.desc div.oneliner { font-size: 3.5vw; color: #777; margin-top: 2vw; }
+section#main article.product_detail section.desc div.shopname { font-size: 6vw; color: #555; margin-top: 2vw; }
+section#main article.product_detail section.desc div.time { font-size: 3vw; line-height: 4vw; color: #777; }
+section#main article.product_detail section.desc div.description { font-size: 3.5vw; line-height: 4vw; color: #777; margin-top: 5vw; }
+section#main article.product_detail section.desc div.btns { margin-top: 4vw; }
+section#main article.product_detail section.desc div.btns a { display: inline-block; width: 42.5vw; height: 10vw; line-height: 10vw; font-size: 4vw; background-color: #6bc5c9; color: white; text-decoration: none; text-align: center; border-radius: 1vw; vertical-align: top; }
+section#main article.product_detail section.desc div.btns button { display: inline-block; width: 42.5vw; height: 10vw; line-height: 10vw; font-size: 4vw; background-color: #f19cac; color: white; text-decoration: none; text-align: center; border-radius: 1vw; margin-left: 5vw; border: 0 none; vertical-align: top; padding: 0; }
+section#main article.product_detail div.orderlist { width: 100vw; height: 100vh; position: absolute; top: 93.7vh; left: 0; background-color: white; z-index: 100; box-sizing: border-box; transition: top .5s, border-top .5s; }
+section#main article.product_detail div.orderlist div.peek { width: 100vw; height: 6.3vh; color: white; position: relative; top: 0; left: 0; background-color: #6bc5c9;  color:  white;}
+section#main article.product_detail div.orderlist div.peek div.text { width: 100vw; height: 6.3vh; position: relative; text-align: center;line-height: 6.3vh; font-size: 4vw; }
+section#main article.product_detail div.orderlist div.peek img.icon { position: absolute;}
+section#main article.product_detail div.orderlist div.peek img.icon_orderlist { top: 1.15vh; left: 3vw; height: 4vh;  }
+section#main article.product_detail div.orderlist div.peek img.icon_arrow { top: 1.65vh; right: 3vw; height: 3vh; }
+section#main article.product_detail.list_opened div.orderlist { top: 0; border-top: 60px solid #6bc5c9; }
+section#main article.product_detail.list_opened div.orderlist div.peek img.icon_arrow { transform: rotate(180deg); }
+
+section#main article.project div.scrollcontainer { width: 100vw; height: 100vh; box-sizing: border-box; padding-top: calc(6.3vh + 62px); overflow: scroll; -webkit-overflow-scrolling: touch; }
+section#main article.project div.scrollcontainer img { width: 100vw; }
+section#main article.project div.scrollcontainer div.title { font-size: 4vw; color: #6bc5c9; width: 100vw; box-sizing: border-box; padding: 2vw; border-bottom: 1vw solid #6bc5c9; margin-top: 3vw; }
+section#main article.project div.scrollcontainer div.commentdiv { width: 100vw;  border-bottom: 2px dashed #6bc5c9; padding: 5vw 0;}
+section#main article.project div.scrollcontainer div.commentdiv input.author { width: 15vw; padding: 2vw; height: 4vw; line-height: 4vw; margin: 2vw; border: 0 none; border-bottom: 2px solid #6bc5c9; font-size: 3vw; text-align: center; }
+section#main article.project div.scrollcontainer div.commentdiv input.comment { width: 45vw; padding: 2vw; height: 4vw; line-height: 4vw; margin: 2vw; border: 0 none; border-bottom: 2px solid #6bc5c9; font-size: 3vw; }
+section#main article.project div.scrollcontainer div.commentdiv button { width: 15vw; padding: 2vw; height: 4vw; line-height: 4vw; margin: 2vw; border: 2px solid #6bc5c9; border-radius: 1vw; background-color: #6bc5c9; font-size: 3vw; box-sizing: content-box; color: white; text-align: center; }
+section#main article.project div.scrollcontainer ul.comments { margin: 0; padding: 0; list-style: none; }
+section#main article.project div.scrollcontainer li.comment { border-bottom: 2px dashed #6bc5c9; }
+section#main article.project div.scrollcontainer li.comment div.author { width: 15vw; padding: 2vw; line-height: 4vw; margin: 2vw; border: 0 none; font-size: 3vw; display: inline-block; vertical-align: middle; text-align: center; }
+section#main article.project div.scrollcontainer li.comment div.comment { width: 45vw; padding: 2vw; line-height: 4vw; margin: 2vw; border: 0 none; font-size: 3vw; display: inline-block; vertical-align: middle; }
+section#main article.project div.scrollcontainer li.comment div.timestamp { width: 15vw; padding: 2vw; line-height: 4vw; margin: 2vw; border: 0 none; font-size: 2.5vw; display: inline-block; vertical-align: middle; text-align: right; color: #888; }
