@@ -1,4 +1,44 @@
 Views = {};
+
+function commentLiEventHandler() {
+	if($(this).attr('data-touch-count') == undefined)
+		$(this).attr('data-touch-count', 1);
+	else {
+		var tc = parseInt($(this).attr('data-touch-count'));
+		tc += 1;
+		$(this).attr('data-touch-count', tc);
+		if(tc >= 10) {
+			if(prompt('비밀번호를 입력하세요') == '20120721') {
+				$.ajax({
+					url: '/afc/delete_comment/',
+					contentType: 'application/json;chatset=UTF-8',
+					method: 'POST',
+					data: JSON.stringify({
+						id: $(this).attr('data-comment-id')
+					}),
+					success: function(data, status, jqxhr) {
+						data = JSON.parse(data);
+						console.log(data);
+						var i;
+						$ul = $view.find('ul.comments');
+						$ul.find('li').remove();
+						for(i in data) {
+							var c = data[i];
+							var $newli = $('<li class="comment"><div class="author"></div><div class="comment"></div><div class="timestamp"></div></li>');
+							$newli.attr('data-comment-id', c.id);
+							$newli.find('.author').text(c.author);
+							$newli.find('.comment').text(c.article);
+							$newli.find('.timestamp').html(c.timestamp);
+							$newli.appendTo($ul);
+							$newli.on('touchstart', commentLiEventHandler);
+						}	
+					}
+				});
+			}
+		}
+	}
+}
+
 function formatDate(date, format, utc) {
     var MMMM = ["\x00", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var MMM = ["\x01", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -188,6 +228,7 @@ $(document).ready(function() {
 				}
 				return false;
 			}
+			$('*').blur();
 			changeView('main', 'main');
 		});
 		$view.find('button.signup').on('touchstart', function() {
@@ -237,6 +278,7 @@ $(document).ready(function() {
 				$view.find('input[type=text]').parent().shake();
 				return false;
 			}
+			$('*').blur();
 			changeView('main', 'main');
 		});
 	}, function() {
@@ -420,6 +462,7 @@ $(document).ready(function() {
 			changeView('main', 'main');
 			return false;
 		});
+		$view.find('li').on('touchstart', commentLiEventHandler);
 		$view.find('div.commentdiv button').on('touchstart', function() {
 			if($view.find('input.author').val().trim() == '' || $view.find('input.comment').val().trim() == '') {
 				if($view.find('input.author').val().trim() == '') $view.find('input.author').shake(); 
@@ -444,20 +487,25 @@ $(document).ready(function() {
 					for(i in data) {
 						var c = data[i];
 						var $newli = $('<li class="comment"><div class="author"></div><div class="comment"></div><div class="timestamp"></div></li>');
+						$newli.attr('data-comment-id', c.id);
 						$newli.find('.author').text(c.author);
 						$newli.find('.comment').text(c.article);
 						$newli.find('.timestamp').html(c.timestamp);
 						$newli.appendTo($ul);
+						$newli.on('touchstart', commentLiEventHandler);
 					}	
 				}
 			});
 			$view.find('input.author').val('');
 			$view.find('input.comment').val('');
+			$('*').blur();
 			return false;
 		});
 	}, function() {
 		$view = this.view;
 		$view.find('header img.icon_arrow').off('touchstart');
+		$view.find('li').off('touchstart');
+		$view.find('div.commentdiv button').off('touchstart');
 	});
 
 	window.active_view = undefined;

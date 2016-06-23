@@ -252,7 +252,7 @@
 					</div>
 					<ul class="comments">
 					{% for c in context.comments %}
-						<li class="comment">
+						<li class="comment" data-comment-id="{{ c.id }}">
 							<div class="author">{{ c.author }}</div>
 							<div class="comment">{{ c.article }}</div>
 							<div class="timestamp">{{ c.timestamp|safe }}</div>
