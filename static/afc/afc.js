@@ -416,6 +416,10 @@ $(document).ready(function() {
 			for(i = 1; i <= 11; i ++) {
 				$view.find('div.img' + i).css('background-image', 'url(/static/afc/product/product-' + s + '-' + i + '.jpg)').attr('data-product-id', 'product-' + s + '-' + i);
 			}
+			$view.find('div.product.img1 div.name').text(product_info['product-' + s + '-1'].name);
+			$view.find('div.product.img1 div.price').text(product_info['product-' + s + '-1'].price);
+			$view.find('div.product.img2 div.name').text(product_info['product-' + s + '-2'].name);
+			$view.find('div.product.img3 div.name').text(product_info['product-' + s + '-3'].name);
 			$view.find('section.scrollable').scrollTop(0);
 		});
 		$view.find('div.product').on('click', function() {
@@ -496,9 +500,29 @@ $(document).ready(function() {
 			changeView('main', 'main');
 			return false;
 		});
+		$view.find('section.popup').removeClass('dnone');
+		$view.find('section.popup').on('touchstart', function() {
+			$(this).addClass('dnone');
+		});
+		$view.find('section.scanform img').on('touchstart', function() {
+			$view.find('input').click();
+		});
+		$view.find('section.scanform input').on('change', function() {
+			var product = product_info['product-1-3'];
+			$('article.product_detail section.product_image').css('background-image', 'url(/static/afc/product/product-1-3.jpg)');
+			$('article.product_detail section.desc div.loc').text(product.location);
+			$('article.product_detail section.desc').attr('data-product-id', 'product-1-3');
+			$('article.product_detail header div.text').text(product.name);
+			$('article.product_detail section.desc div.shopname').text(product.name);
+			$('article.product_detail section.desc div.time').text(product.price);
+			changeView('main', 'product_detail');
+		});
 	}, function() {
 		$view = this.view;
 		$view.find('header img.icon_arrow').off('touchstart');
+		$view.find('section.popup').off('touchstart');
+		$view.find('section.scanform img').off('touchstart');
+		$view.find('section.scanform input').off('change');
 	});
 
 	addView('main', 'project', function() {
@@ -578,7 +602,7 @@ $(document).ready(function() {
 		changeView($('body').attr('data-startwth-section'), $('body').attr('data-startwth-article'));
 	}
 	else {
-		changeView('main', 'catalog');
-		//changeView('login', 'default');
+		//changeView('main', 'qrscan');
+		changeView('login', 'default');
 	}
 });

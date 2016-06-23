@@ -214,3 +214,15 @@ section#main article.project div.scrollcontainer li.comment { border-bottom: 2px
 section#main article.project div.scrollcontainer li.comment div.author { width: 15vw; padding: 2vw; line-height: 4vw; margin: 2vw; border: 0 none; font-size: 3vw; display: inline-block; vertical-align: middle; text-align: center; }
 section#main article.project div.scrollcontainer li.comment div.comment { width: 45vw; padding: 2vw; line-height: 4vw; margin: 2vw; border: 0 none; font-size: 3vw; display: inline-block; vertical-align: middle; }
 section#main article.project div.scrollcontainer li.comment div.timestamp { width: 15vw; padding: 2vw; line-height: 4vw; margin: 2vw; border: 0 none; font-size: 2.5vw; display: inline-block; vertical-align: middle; text-align: right; color: #888; }
+
+section#main article.qrscan section.popup { width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; background: rgba(0, 0, 0, .7); z-index: 100000; }
+section#main article.qrscan section.popup img { width: 80vw; height: 125.3658vw; display: block; overflow: hidden; top: calc(50vh - 62.6829vw); left: 10vw; position: absolute; }
+section#main article.qrscan section.scanform { text-align: center; }
+section#main article.qrscan section.scanform div { width: 100vw; height: 5vw; line-height: 5vw; font-size: 4vw; text-align: center; }
+section#main article.qrscan section.scanform div.guide { margin-top: 20vh; }
+section#main article.qrscan section.scanform div.guide span { color: #6bc5c9; }
+section#main article.qrscan section.scanform div.imgdiv { height: 50vh; max-width: 100vw; margin-top: 10vh; position: relative; }
+section#main article.qrscan section.scanform div.imgdiv img { height: 100%; }
+section#main article.qrscan section.scanform div.guide2 { font-size: 3vw; color: #555; }
+section#main article.qrscan section.scanform input { height: 100%; width: 100%; opacity: 0; position: absolute;top: 0; left: 0;}
+

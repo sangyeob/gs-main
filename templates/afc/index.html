@@ -11,7 +11,7 @@
 		<link rel="apple-touch-icon" sizes="152x152" href="/static/afc/assets/icon_152.png" />
 		<script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="/static/js/fastclick.js"></script>
-		<script type="text/javascript" src="/static/afc/product_info.js"></script>
+		<script type="text/javascript" src="/static/afc/product_info.js?v={{ context.rand }}"></script>
 		<link rel="stylesheet" href="/static/afc/afc.css?v={{ context.rand }}" />
 		<script type="text/javascript" src="/static/afc/afc.js?v={{ context.rand }}"></script>
 	</head>
@@ -248,6 +248,17 @@
 					<img src="/static/afc/assets/icon_arrow_left_white_100x100.png" alt="" class="icon icon_arrow">
 					<div class="text">제품스캔</div>
 				</header>
+				<section class="popup">
+					<img src="/static/afc/assets/scan_instruction.jpg" />
+				</section>
+				<section class="scanform">
+					<div class="guide">원하시는 제품의&nbsp;<span>QR 코드</span>를 찍어주세요</div>
+					<div class="imgdiv">
+						<img src="/static/afc/assets/qrsample.png" />
+						<input type="file" accept="image/*" capture />
+					</div>
+					<div class="guide2">위의 QR코드 이미지를 눌러 카메라를 불러오세요</div>
+				</section>
 			</article>
 			<article class="project dnone">
 				<header>
