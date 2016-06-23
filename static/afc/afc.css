@@ -38,12 +38,26 @@ section#main article div.orderlist div.peek img.icon_orderlist { top: 1.15vh; le
 section#main article div.orderlist div.peek img.icon_arrow { top: 1.65vh; right: 3vw; height: 3vh; }
 section#main article.list_opened div.orderlist { top: 0; border-top: 60px solid #6bc5c9; }
 section#main article.list_opened div.orderlist div.peek img.icon_arrow { transform: rotate(180deg); }
-section#main article div.orderlist ul { margin: 0; padding: 0; list-style: none; }
+section#main article div.orderlist ul { margin: 0; padding: 0; list-style: none; height: calc(93.7vh - 62px); overflow: scroll; -webkit-overflow-scrolling: touch; }
 section#main article div.orderlist li { border-bottom: 2px dashed #6bc5c9; text-align: left; padding: 2vw; position: relative; }
 section#main article div.orderlist ul div.pic { width: 10vw; height: 10vw; background-size: cover; background-position: 50% 50%; padding: 3vw; display: inline-block; vertical-align: top; }
 section#main article div.orderlist ul div.name { width: 38vw; height: 10vw; line-height: 10vw; padding: 3vw; display: inline-block; vertical-align: top; font-size: 3vw; text-align: center; }
 section#main article div.orderlist ul div.price { width: 30vw; height: 10vw; line-height: 10vw; padding: 3vw; display: inline-block; vertical-align: top; font-size: 3vw; text-align: center; }
 section#main article div.orderlist ul div.remove { position: absolute; font-size: 4vw; top: 2vw; right: 2vw; font-weight: 100; color: #555; width: 5vw; height: 5vw; text-align: center; line-height: 5vw; }
+section#main article div.goodslist { width: 100vw; height: 100vh; position: absolute; top: 93.7vh; left: 0; background-color: white; z-index: 100; box-sizing: border-box; transition: top .5s, border-top .5s; }
+section#main article div.goodslist div.peek { width: 100vw; height: 6.3vh; color: white; position: relative; top: 0; left: 0; background-color: #6bc5c9;  color:  white;}
+section#main article div.goodslist div.peek div.text { width: 100vw; height: 6.3vh; position: relative; text-align: center;line-height: 6.3vh; font-size: 4vw; }
+section#main article div.goodslist div.peek img.icon { position: absolute;}
+section#main article div.goodslist div.peek img.icon_goodslist { top: 1.15vh; left: 3vw; height: 4vh;  }
+section#main article div.goodslist div.peek img.icon_arrow { top: 1.65vh; right: 3vw; height: 3vh; }
+section#main article.list_opened div.goodslist { top: 0; border-top: 60px solid #6bc5c9; }
+section#main article.list_opened div.goodslist div.peek img.icon_arrow { transform: rotate(180deg); }
+section#main article div.goodslist ul { margin: 0; padding: 0; list-style: none; height: calc(93.7vh - 62px); overflow: scroll; -webkit-overflow-scrolling: touch; }
+section#main article div.goodslist li { border-bottom: 2px dashed #6bc5c9; text-align: left; padding: 2vw; position: relative; }
+section#main article div.goodslist ul div.pic { width: 10vw; height: 10vw; background-size: cover; background-position: 50% 50%; padding: 3vw; display: inline-block; vertical-align: top; }
+section#main article div.goodslist ul div.name { width: 38vw; height: 10vw; line-height: 10vw; padding: 3vw; display: inline-block; vertical-align: top; font-size: 3vw; text-align: center; }
+section#main article div.goodslist ul div.price { width: 30vw; height: 10vw; line-height: 10vw; padding: 3vw; display: inline-block; vertical-align: top; font-size: 3vw; text-align: center; }
+section#main article div.goodslist ul div.remove { position: absolute; font-size: 4vw; top: 2vw; right: 2vw; font-weight: 100; color: #555; width: 5vw; height: 5vw; text-align: center; line-height: 5vw; display: none; }
 
 section#login { background: url(/static/afc/assets/ikea_back.png) 0 0 no-repeat transparent; background-size: cover; animation-name: backflow; animation-duration: 150s; position: relative; }
 section#login div.bg { width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); position: absolute; }
@@ -155,14 +169,6 @@ section#main article.shop_detail section.desc div.description { font-size: 3.5vw
 section#main article.shop_detail section.desc div.btns { margin-top: 4vw; }
 section#main article.shop_detail section.desc div.btns a { display: inline-block; width: 42.5vw; height: 10vw; line-height: 10vw; font-size: 4vw; background-color: #6bc5c9; color: white; text-decoration: none; text-align: center; border-radius: 1vw; vertical-align: top; }
 section#main article.shop_detail section.desc div.btns button { display: inline-block; width: 42.5vw; height: 10vw; line-height: 10vw; font-size: 4vw; background-color: #f19cac; color: white; text-decoration: none; text-align: center; border-radius: 1vw; margin-left: 5vw; border: 0 none; vertical-align: top; padding: 0; }
-section#main article.shop_detail div.goodslist { width: 100vw; height: 100vh; position: absolute; top: 93.7vh; left: 0; background-color: #6bc5c9; color: white; transition: top .5s; z-index: 100; }
-section#main article.shop_detail.list_opened div.goodslist { top: 60px; }
-section#main article.shop_detail.list_opened div.goodslist div.peek img.icon_arrow { transform: rotate(180deg); }
-section#main article.shop_detail div.goodslist div.peek { width: 100vw; height: 6.3vh; color: white; }
-section#main article.shop_detail div.goodslist div.peek div.text { width: 100vw; height: 6.3vh; position: relative; text-align: center;line-height: 6.3vh; font-size: 4vw; }
-section#main article.shop_detail div.goodslist div.peek img.icon { position: absolute; }
-section#main article.shop_detail div.goodslist div.peek img.icon_goodslist { top: 1.15vh; left: 3vw; height: 4vh;  }
-section#main article.shop_detail div.goodslist div.peek img.icon_arrow { top: 1.65vh; right: 3vw; height: 3vh; transition: transform .5s; }
 
 section#main article.catalog {}
 section#main article.catalog nav.category { width: 100vw; height: 10vw; overflow: scroll; margin-top: calc(6.3vh + 62px); -webkit-overflow-scrolling: touch; z-index: 1; position: relative; }
