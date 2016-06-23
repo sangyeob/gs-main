@@ -422,16 +422,22 @@ $(document).ready(function() {
 			var product = product_info[$(this).attr('data-product-id')];
 			$('article.product_detail section.product_image').css('background-image', $(this).css('background-image'));
 			$('article.product_detail section.desc div.loc').text(product.location);
+			$('article.product_detail section.desc').attr('data-product-id', $(this).attr('data-product-id'));
 			$('article.product_detail header div.text').text(product.name);
 			$('article.product_detail section.desc div.shopname').text(product.name);
 			$('article.product_detail section.desc div.time').text(product.price);
 			changeView('main', 'product_detail');
+		});
+		$view.find('div.orderlist div.peek').on('touchstart', function() {
+			$view.toggleClass('list_opened');
+			return false;
 		});
 	}, function() {
 		$view = this.view;
 		$view.find('header img.icon_arrow').off('touchstart');
 		$view.find('nav ul li').off('click');
 		$view.find('div.product').off('click');
+		$view.find('div.orderlist div.peek').off('touchstart');
 	});
 
 	addView('main', 'product_detail', function() {
@@ -440,9 +446,48 @@ $(document).ready(function() {
 			changeView('main', 'catalog');
 			return false;
 		});
+		$view.find('div.orderlist div.peek').on('touchstart', function() {
+			$view.toggleClass('list_opened');
+			return false;
+		});
+		$view.find('section.desc a').on('touchstart', function() {
+			$view.find('section.popup div.loc').text($view.find('section.desc div.loc').text());
+			$view.find('section.popup').removeClass('dnone');
+		});
+		$view.find('section.desc button').on('touchstart', function() {
+			var $newli = $('<li><div class="pic"></div><div class="name"></div><div class="price"></div><div class="remove">&times;</div></li>');
+			var product = product_info[$view.find('section.desc').attr('data-product-id')];
+			$newli.attr('data-product-id', $view.find('section.desc').attr('data-product-id'));
+			$newli.find('.pic').css('background-image', $view.find('section.product_image').css('background-image'));
+			$newli.find('.name').text(product.name);
+			$newli.find('.price').text(product.price);
+			$newli.appendTo($('section#main article div.orderlist ul'));
+			$view.addClass('list_opened');
+			$('section#main article div.orderlist li[data-product-id=' + $view.find('section.desc').attr('data-product-id') + ']').click(function() {
+				var product = product_info[$(this).attr('data-product-id')];
+				$('article.product_detail section.product_image').css('background-image', $(this).find('div.pic').css('background-image'));
+				$('article.product_detail section.desc div.loc').text(product.location);
+				$('article.product_detail section.desc').attr('data-product-id', $(this).attr('data-product-id'));
+				$('article.product_detail header div.text').text(product.name);
+				$('article.product_detail section.desc div.shopname').text(product.name);
+				$('article.product_detail section.desc div.time').text(product.price);
+				changeView('main', 'product_detail');
+			});
+			$('section#main article div.orderlist li[data-product-id=' + $view.find('section.desc').attr('data-product-id') + '] div.remove').click(function() {
+				$('section#main article div.orderlist li[data-product-id=' + $(this).parent().attr('data-product-id') + ']').remove();
+			});
+			
+		});
+		$view.find('section.popup').on('touchstart', function() {
+			$view.find('section.popup').addClass('dnone');
+		});
 	}, function() {
 		$view = this.view;
 		$view.find('header img.icon_arrow').off('touchstart');
+		$view.find('div.orderlist div.peek').off('touchstart');
+		$view.find('section.desc a').off('touchstart');
+		$view.find('section.desc button').off('touchstart');
+		$view.find('section.popup').off('touchstart');
 	});
 
 	addView('main', 'qrscan', function() {
@@ -533,7 +578,7 @@ $(document).ready(function() {
 		changeView($('body').attr('data-startwth-section'), $('body').attr('data-startwth-article'));
 	}
 	else {
-		changeView('main', 'project');
+		changeView('main', 'catalog');
 		//changeView('login', 'default');
 	}
 });
