@@ -251,13 +251,6 @@
 						<input type="text" class="author" name="author" placeholder="이름" /><input type="text" class="comment" name="comment" placeholder="내용" /><button class="submit">글 남기기</button>
 					</div>
 					<ul class="comments">
-					{% for c in context.comments %}
-						<li class="comment" data-comment-id="{{ c.id }}">
-							<div class="author">{{ c.author }}</div>
-							<div class="comment">{{ c.article }}</div>
-							<div class="timestamp">{{ c.timestamp|safe }}</div>
-						</li>
-					{% endfor %}
 					</ul>
 				</div>
 			</article>

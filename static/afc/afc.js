@@ -462,7 +462,27 @@ $(document).ready(function() {
 			changeView('main', 'main');
 			return false;
 		});
-		$view.find('li').on('touchstart', commentLiEventHandler);
+		$.ajax({
+			url: '/afc/get_comment/',
+			method: 'GET',
+			success: function(data, status, jqxhr) {
+				data = JSON.parse(data);
+				console.log(data);
+				var i;
+				$ul = $view.find('ul.comments');
+				$ul.find('li').remove();
+				for(i in data) {
+					var c = data[i];
+					var $newli = $('<li class="comment"><div class="author"></div><div class="comment"></div><div class="timestamp"></div></li>');
+					$newli.attr('data-comment-id', c.id);
+					$newli.find('.author').text(c.author);
+					$newli.find('.comment').text(c.article);
+					$newli.find('.timestamp').html(c.timestamp);
+					$newli.appendTo($ul);
+					$newli.on('touchstart', commentLiEventHandler);
+				}	
+			}
+		});
 		$view.find('div.commentdiv button').on('touchstart', function() {
 			if($view.find('input.author').val().trim() == '' || $view.find('input.comment').val().trim() == '') {
 				if($view.find('input.author').val().trim() == '') $view.find('input.author').shake(); 
