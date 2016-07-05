@@ -38,12 +38,17 @@ section#main article div.orderlist div.peek img.icon_orderlist { top: 1.15vh; le
 section#main article div.orderlist div.peek img.icon_arrow { top: 1.65vh; right: 3vw; height: 3vh; }
 section#main article.list_opened div.orderlist { top: 0; border-top: 60px solid #6bc5c9; }
 section#main article.list_opened div.orderlist div.peek img.icon_arrow { transform: rotate(180deg); }
-section#main article div.orderlist ul { margin: 0; padding: 0; list-style: none; height: calc(93.7vh - 62px); overflow: scroll; -webkit-overflow-scrolling: touch; }
+section#main article div.orderlist ul { margin: 0; padding: 0; list-style: none; height: calc(81.4vh - 58px); overflow: scroll; -webkit-overflow-scrolling: touch; }
 section#main article div.orderlist li { border-bottom: 2px dashed #6bc5c9; text-align: left; padding: 2vw; position: relative; }
 section#main article div.orderlist ul div.pic { width: 10vw; height: 10vw; background-size: cover; background-position: 50% 50%; padding: 3vw; display: inline-block; vertical-align: top; }
 section#main article div.orderlist ul div.name { width: 38vw; height: 10vw; line-height: 10vw; padding: 3vw; display: inline-block; vertical-align: top; font-size: 3vw; text-align: center; }
 section#main article div.orderlist ul div.price { width: 30vw; height: 10vw; line-height: 10vw; padding: 3vw; display: inline-block; vertical-align: top; font-size: 3vw; text-align: center; }
 section#main article div.orderlist ul div.remove { position: absolute; font-size: 4vw; top: 2vw; right: 2vw; font-weight: 100; color: #555; width: 5vw; height: 5vw; text-align: center; line-height: 5vw; }
+section#main article div.orderlist div.order { height: 12.3vh; position: absolute; bottom: 0; width: 100vw; left: 0; background-color: #6bc5c9; color: white; }
+section#main article div.orderlist div.order div.price { height: 5vh; width: 90vw; font-size: 2vh; line-height: 5vh; padding: 0 5vw; text-align: right;  margin-top: 1vh; }
+section#main article div.orderlist div.order div.btns { height: 4.3vh; width: 90vw; font-size: 2vh; padding: 1vh 5vw; }
+section#main article div.orderlist div.order button.togo { width: 42.5vw; margin: 0 5vw 0 0; padding: 0; font-size: 2vh; height: 4.3vh; display: inline-block; vertical-align: top; background-color: white; color: #6bc5c9; border-radius: 2vw; border: 0px none; }
+section#main article div.orderlist div.order button.paynow { width: 42.5vw; margin: 0; padding: 0; font-size: 2vh; height: 4.3vh; display: inline-block; vertical-align: top; background-color: white; color: #6bc5c9; border-radius: 2vw; border: 0px none; }
 section#main article div.goodslist { width: 100vw; height: 100vh; position: absolute; top: 93.7vh; left: 0; background-color: white; z-index: 100; box-sizing: border-box; transition: top .5s, border-top .5s; }
 section#main article div.goodslist div.peek { width: 100vw; height: 6.3vh; color: white; position: relative; top: 0; left: 0; background-color: #6bc5c9;  color:  white;}
 section#main article div.goodslist div.peek div.text { width: 100vw; height: 6.3vh; position: relative; text-align: center;line-height: 6.3vh; font-size: 4vw; }
@@ -232,3 +237,13 @@ section#main article.qrscan section.scanform div.imgdiv img { height: 100%; }
 section#main article.qrscan section.scanform div.guide2 { font-size: 3vw; color: #555; }
 section#main article.qrscan section.scanform input { height: 100%; width: 100%; opacity: 0; position: absolute;top: 0; left: 0;}
 
+div.togohidden { width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; z-index: 100000; }
+div.togohidden div.bg { width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; z-index: 1; background: rgba(0, 0, 0, .5); }
+div.togohidden div.article { width: 80vw; height: 80vw; position: absolute; top: calc(50vh - 40vw); left: 10vw; background: white; z-index: 2; border-radius: 5vw; overflow: hidden; }
+div.togohidden div.article div.title { width: 80vw; height: 10vw; font-size: 4vw; line-height: 10vw; text-align: center; background: white; color: #6bc5c9; border-bottom: 1vw solid #6bc5c9 }
+div.togohidden div.article p.sub { width: 80vw; height: 10vw; line-height: 10vw; padding: 10vw 0; margin: 0; color: #555; text-align: center; font-size: 4vw; }
+div.togohidden div.article div.time { width: 60vw; height: 10vw; padding: 10vw 10vw; }
+div.togohidden div.article div.time select,
+div.togohidden div.article div.time option { width: 25vw; height: 10vw; line-height: 10vw; margin: 0; padding: 0; border: 0px none; border-bottom: 1vw solid #6bc5c9; color: #555; background-color: white; text-align: center; font-size: 4vw; }
+div.togohidden div.article div.time select.hour { margin-right: 10vw; }
+div.togohidden div.article button.accept { width: 80vw; height: 10vw; font-size: 4vw; line-height: 10vw; background-color: #6bc5c9; color: white; margin: 0; padding: 0; border: 0; }

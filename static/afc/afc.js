@@ -470,6 +470,7 @@ $(document).ready(function() {
 			$view.find('section.popup').removeClass('dnone');
 		});
 		$view.find('section.desc button').on('touchstart', function() {
+			var i, j;
 			var $newli = $('<li><div class="pic"></div><div class="name"></div><div class="price"></div><div class="remove">&times;</div></li>');
 			var product = product_info[$view.find('section.desc').attr('data-product-id')];
 			$newli.attr('data-product-id', $view.find('section.desc').attr('data-product-id'));
@@ -478,6 +479,20 @@ $(document).ready(function() {
 			$newli.find('.price').text(product.price);
 			$newli.appendTo($('section#main article div.orderlist ul'));
 			$view.addClass('list_opened');
+			var lis = $('section#main article.main div.orderlist ul li');
+			var ss = 0;
+			for(i = 0; i < lis.length; i ++) {
+				var p = product_info[$(lis[i]).attr('data-product-id')].price;
+				var s = 0;
+				for(j in p) {
+					if(p[j] >= '0' && p[j] <='9') {
+						s *= 10;
+						s += parseInt(p[j]);
+					}
+				}
+				ss += s;
+			}
+			$('section#main article div.orderlist div.order div.price').text('총 ' + ss + '원');
 			$('section#main article div.orderlist li[data-product-id=' + $view.find('section.desc').attr('data-product-id') + ']').click(function() {
 				var product = product_info[$(this).attr('data-product-id')];
 				$('article.product_detail section.product_image').css('background-image', $(this).find('div.pic').css('background-image'));
@@ -491,6 +506,21 @@ $(document).ready(function() {
 			});
 			$('section#main article div.orderlist li[data-product-id=' + $view.find('section.desc').attr('data-product-id') + '] div.remove').click(function() {
 				$('section#main article div.orderlist li[data-product-id=' + $(this).parent().attr('data-product-id') + ']').remove();
+				var i, j;
+				var lis = $('section#main article.main div.orderlist ul li');
+				var ss = 0;
+				for(i = 0; i < lis.length; i ++) {
+					var p = product_info[$(lis[i]).attr('data-product-id')].price;
+					var s = 0;
+					for(j in p) {
+						if(p[j] >= '0' && p[j] <='9') {
+							s *= 10;
+							s += parseInt(p[j]);
+						}
+					}
+					ss += s;
+				}
+				$('section#main article div.orderlist div.order div.price').text('총 ' + ss + '원');
 				return false;
 			});
 			return false;
@@ -611,12 +641,32 @@ $(document).ready(function() {
 		$view.find('div.commentdiv button').off('touchstart');
 	});
 
+	$('div.togohidden div.bg').on('touchstart', function(e) {
+		$('div.togohidden').addClass('dnone');
+		return false;
+	});
+
+	$('div.togohidden button.accept').on('touchstart', function(e) {
+		$('div.togohidden').addClass('dnone');
+		return false;
+	});
+
+	$('div.orderlist div.order div.btns button.togo').on('touchstart', function(e) {
+		$('div.togohidden').removeClass('dnone');
+		return false;
+	});
+
+	$('div.orderlist div.order div.btns button.paynow').on('touchstart', function() {
+		alert('방명록을 남겨주세요 :)');
+		changeView('main', 'project');
+	});
+
 	window.active_view = undefined;
 	if($('body').hasClass('startswith')) {
 		changeView($('body').attr('data-startwth-section'), $('body').attr('data-startwth-article'));
 	}
 	else {
-		//changeView('main', 'qrscan');
-		changeView('login', 'default');
+		changeView('main', 'main');
+		//changeView('login', 'default');
 	}
 });
