@@ -666,7 +666,7 @@ $(document).ready(function() {
 		changeView($('body').attr('data-startwth-section'), $('body').attr('data-startwth-article'));
 	}
 	else {
-		changeView('main', 'main');
-		//changeView('login', 'default');
+		//changeView('main', 'main');
+		changeView('login', 'default');
 	}
 });
